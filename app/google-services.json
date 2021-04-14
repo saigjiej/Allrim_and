@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "468341742724",
+    "project_id": "allrim",
+    "storage_bucket": "allrim.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468341742724:android:4f65aa3379c94b3231b6d1",
+        "android_client_info": {
+          "package_name": "com.example.allrim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468341742724-0eg6chl7gd21bplbmjdij73t1ik1b419.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.allrim",
+            "certificate_hash": "c358e2f2e522a6eeef5753fe2d038d7ea1aaa623"
+          }
+        },
+        {
+          "client_id": "468341742724-qm9b5i4q1vg18ejvfd43blg4eonl8r11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtSO3NbY_Bht3NkrQsBL4AWYdiQbSEoCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468341742724-qm9b5i4q1vg18ejvfd43blg4eonl8r11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
