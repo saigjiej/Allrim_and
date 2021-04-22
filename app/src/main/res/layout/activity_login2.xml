@@ -26,9 +26,10 @@
         android:layout_marginStart="112dp"
         android:layout_marginTop="392dp"
         android:width="200dp"
-        android:height="80dp"
+        android:height="50dp"
         android:text="로그인"
-        android:textSize="20dp"
+        android:textSize="12dp"
+        android:textStyle="bold"
         android:background="#FCD3DA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
