@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Allrim">
-        <activity android:name=".loginActivity"></activity>
+        <activity android:name=".writing"></activity>
+        <activity android:name=".loginActivity" />
         <activity android:name=".AfterLoginActivity" />
         <activity
             android:name=".MainActivity"
