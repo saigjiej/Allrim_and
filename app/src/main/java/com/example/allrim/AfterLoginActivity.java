@@ -29,7 +29,6 @@ public class AfterLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_afterlogin);
 
         mAuth = FirebaseAuth.getInstance();
-        Intent intent = getIntent();
         String email =  mAuth.getCurrentUser().getEmail();
         String nickName = mAuth.getCurrentUser().getDisplayName(); // MainActivity로 부터 닉네임 전달받음
         Uri photoUrl = mAuth.getCurrentUser().getPhotoUrl(); // MainActivity로 부터 프로필사진 Url 전달받음
@@ -47,22 +46,12 @@ public class AfterLoginActivity extends AppCompatActivity {
     View.OnClickListener onClickListener = v -> {
         switch(v.getId()){
             case R.id.bt_move:
-                /*Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("login", true);
-                startActivity(intent);*/
-                signOut();
-                finishAffinity();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
                 break;
         }
     };
-    private void signOut() {
-        FirebaseAuth.getInstance().signOut();
-        GoogleSignInClient googleApiClient = GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build());
-        googleApiClient.signOut();
-    }
+
     private void revokeAccess() {
         mAuth.getCurrentUser().delete();
     }

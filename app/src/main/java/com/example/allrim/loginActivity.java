@@ -36,7 +36,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
         auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화
 
         if (auth.getCurrentUser() != null) {
-            Intent intent = new Intent(getApplication(), AfterLoginActivity.class);
+            Intent intent = new Intent(getApplication(), MainActivity.class);
             startActivity(intent);
             finish();
         }
