@@ -10,4 +10,15 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_writing">WritingActivity</string>
+    
+    <string name="notice">알림</string>
+    <string name="schedule">시간표</string>
+    <string name="writing">내가 쓴 글</string>
+    <string name="comment">내가 쓴 댓글</string>
+    <string name="set">설정</string>
+    <string name="board">게시판 종류</string>
+
+
+
 </resources>
