@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_item_notice"
+            android:checked="true"
+            android:title="@string/notice"/>
+        <item
+            android:id="@+id/navigation_item_schedule"
+            android:checked="true"
+            android:title="@string/schedule"/>
+        <item
+            android:id="@+id/navigation_item_writing"
+            android:checked="true"
+            android:title="@string/writing"/>
+        <item
+            android:id="@+id/navigation_item_comment"
+            android:checked="true"
+            android:title="@string/comment"/>
+        <item
+            android:id="@+id/navigation_item_set"
+            android:checked="true"
+            android:title="@string/set"/>
+        <item
+            android:id="@+id/navigation_item_board"
+            android:checked="true"
+            android:title="@string/board"/>
+    </group>
+</menu>
