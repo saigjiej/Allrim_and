@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".WriteActivity">
+    tools:context=".MealActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,25 +20,15 @@
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
-        <EditText
-            android:id="@+id/editTextTextPersonName"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="150px"
-            android:ems="10"
-            android:hint="제목"
-            android:inputType="textPersonName"/>
-
-        <EditText
-            android:id="@+id/editTextTextMultiLine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="300px"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="내용"
-            android:inputType="textMultiLine"
-            android:lines="15"/>
+            android:layout_height="match_parent"
+            android:text="오늘의 급식"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_marginTop="200px"
+            android:layout_marginLeft="50px"/>
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -48,7 +38,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer">
-
     </com.google.android.material.navigation.NavigationView>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
