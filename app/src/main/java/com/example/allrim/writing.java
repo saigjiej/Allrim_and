@@ -14,8 +14,6 @@ public class writing extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_write);
         title = findViewById(R.id.editTextTextPersonName);
         contents = findViewById(R.id.editTextTextMultiLine);
-
-        findViewById(R.id.submitBtn).setOnClickListener(this); //글 등록 버튼
     }
 
     @Override

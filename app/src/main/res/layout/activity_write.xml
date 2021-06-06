@@ -43,16 +43,6 @@
             android:inputType="textMultiLine"
             android:background="@drawable/square"
             android:lines="15"/>
-<<<<<<< HEAD
-        <Button
-            android:id="@+id/submitBtn"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="1300px"
-            android:layout_marginLeft="100px"
-            android:text="등록"
-            />
-=======
 
         <Button
             android:layout_width="480px"
@@ -70,8 +60,6 @@
             android:text="등록"
             android:background="@drawable/square"/>
 
-
->>>>>>> b8be97d75871682e9d46ee5060107cc765839431
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
