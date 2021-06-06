@@ -34,7 +34,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onCreate(Bundle savedInstanceState) { // 앱이 실행될 때 처음 수행되는 곳
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_page);
+        setContentView(R.layout.activity_first_acivity);
         auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화
 
         if (auth.getCurrentUser() != null) {
@@ -49,13 +49,13 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
                 .build();
         googleApiClient = GoogleSignIn.getClient(this, gso);
 
-        findViewById(R.id.btn_google).setOnClickListener(onClickListener);
+        findViewById(R.id.bt_login).setOnClickListener(onClickListener);
     }
 
     // 버튼 클릭 부분
     View.OnClickListener onClickListener = v -> {
         switch(v.getId()){
-            case R.id.btn_google:
+            case R.id.bt_login:
                 login();
                 break;
         }

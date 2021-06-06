@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".FirstAcivity">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imageView1"
@@ -14,6 +13,7 @@
         android:src="@drawable/logo" />
 
     <Button
+        android:id="@+id/bt_login"
         android:layout_width="680px"
         android:layout_height="55dp"
         android:textStyle="bold"
@@ -22,13 +22,13 @@
         android:layout_marginLeft="200px"
         android:text="로그인" />
 
-    <Button
+    <!--<Button
         android:layout_width="680px"
         android:layout_height="55dp"
         android:textStyle="bold"
         android:background="#21A970"
         android:layout_marginTop="1300px"
         android:layout_marginLeft="200px"
-        android:text="회원가입" />
+        android:text="회원가입" />-->
 
 </RelativeLayout>

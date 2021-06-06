@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView iv_profile; // 이미지 뷰
 
     private AppBarConfiguration mAppBarConfiguration;
-    private boolean login = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,9 +48,6 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main);
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-            FloatingActionButton fab = findViewById(R.id.fab);
-            fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show());
 
             DrawerLayout drawer = findViewById(R.id.drawer);
             NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
