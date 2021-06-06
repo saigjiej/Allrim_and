@@ -5,12 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -19,6 +21,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -29,12 +33,10 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
+    private DrawerLayout mDrawerLayout;
 
-    private TextView tv_email; // 닉네임 text
     private TextView tv_nickname; // 닉네임 text
     private ImageView iv_profile; // 이미지 뷰
-
-    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,39 +47,72 @@ public class MainActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }else{
-            setContentView(R.layout.activity_main);
-            Toolbar toolbar = findViewById(R.id.toolbar);
+            setContentView(R.layout.activity_community_main);
+
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
-            DrawerLayout drawer = findViewById(R.id.drawer);
-            NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setHomeAsUpIndicator(R.drawable.menu);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
+            mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+
             View headerView = navigationView.getHeaderView(0);
+            navigationView.getMenu().getItem(0).setChecked(false);
 
-            // Passing each menu ID as a set of Ids because each
-            // menu should be considered as top level destinations.
-            mAppBarConfiguration = new AppBarConfiguration.Builder(
-                    R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-                    .setDrawerLayout(drawer)
-                    .build();
+            navigationView.setNavigationItemSelectedListener(menuItem -> {
+                mDrawerLayout.closeDrawers();
 
+                int id = menuItem.getItemId();
 
-            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-            NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-            NavigationUI.setupWithNavController(navigationView, navController);
+                switch (id) {
+                    case R.id.navigation_item_notice:
+                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.navigation_item_schedule:
+                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.navigation_item_writing:
+                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.navigation_item_comment:
+                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.navigation_item_set:
+                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.navigation_item_board:
+                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        break;
+                }
+                return false;
+            });
 
-            findViewById(R.id.logoutButton).setOnClickListener(onClickListener);
-
-            String email =  mAuth.getCurrentUser().getEmail();
             String nickName = mAuth.getCurrentUser().getDisplayName(); // MainActivity로 부터 닉네임 전달받음
             Uri photoUrl = mAuth.getCurrentUser().getPhotoUrl(); // MainActivity로 부터 프로필사진 Url 전달받음
 
-            tv_email = (TextView) headerView.findViewById(R.id.tv_googleEmail);
-            tv_email.setText(email); // 닉네임 text를 텍스트 뷰에 세팅
+            iv_profile = headerView.findViewById(R.id.img_userImage);
+            Glide.with(this).load(photoUrl).into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
 
-            tv_nickname = (TextView) headerView.findViewById(R.id.tv_googleName);
+            tv_nickname = (TextView) headerView.findViewById(R.id.tv_userName);
             tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
         }
 
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.action_settings:
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     // 버튼 클릭 부분
@@ -97,20 +132,6 @@ public class MainActivity extends AppCompatActivity {
                 .requestEmail()
                 .build());
         googleApiClient.signOut();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 
     @Override

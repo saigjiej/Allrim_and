@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,7 +33,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onCreate(Bundle savedInstanceState) { // 앱이 실행될 때 처음 수행되는 곳
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first_acivity);
+        setContentView(R.layout.activity_login);
         auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화
 
         if (auth.getCurrentUser() != null) {
