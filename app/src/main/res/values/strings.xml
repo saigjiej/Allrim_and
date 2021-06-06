@@ -10,6 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
     <string name="title_activity_writing">WritingActivity</string>
 
     <string name="notice">알림</string>
@@ -19,5 +20,8 @@
     <string name="set">설정</string>
     <string name="board">게시판 종류</string>
 
+    <string name="title">글쓰기</string>
+    <string name="nickname">닉네임</string>
+    <string name="infoAno">* 익명을 원하신다면 익명에 체크를 해주세요.</string>
 
 </resources>
