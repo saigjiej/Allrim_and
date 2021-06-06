@@ -126,13 +126,48 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
     }
     private void updateUI(FirebaseUser user) { //update ui code here
         if (user != null) {
-            Intent intent = new Intent(this, AfterLoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            if(true){
+                String[] info = getInfo(user); // 학년 반 과 담긴 배열 반환
+                Toast.makeText(loginActivity.this, info[0]+ info[1] +  info[2], Toast.LENGTH_SHORT).show();
+                // 없으면 회원정보 db에 인서트
+            }
+            //user.getEmail()이 디비에 있으면 걍 로그인
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         }
     }
+    private String[] getInfo(FirebaseUser user){
+        String[] info = new String[3]; // 학년 반 과
+        // 학년, 반 입력
+        if(user.getDisplayName().substring(0,3).equals("졸업생")){
+            info[0] = null; info[1] = null;
+        }else{
+            info[0] = user.getDisplayName().substring(0,1); info[1] = user.getDisplayName().substring(1,2);
+        }
+        // 과 입력
+        // 2020년 이후 입학이면(형식이 다름)
+        if(user.getEmail().substring(0,user.getEmail().lastIndexOf("@")).length()==5){
+            info[2] = user.getEmail().substring(0,1);
+        }else if(user.getEmail().substring(0,user.getEmail().lastIndexOf("@")).length()==8){
+            info[2] = user.getEmail().substring(5,6);
+        }else{
+            Toast.makeText(loginActivity.this, "지원하지 않는 이메일 양식입니다, 문의바람", Toast.LENGTH_SHORT).show();
+        }
+        switch (info[2]){
+            case "s":
+                info[2] = "뉴미디어소프트웨어과";
+                break;
+            case "w":
+                info[2] = "뉴미디어웹솔루션과";
+                break;
+            case "d":
+                info[2] = "뉴미디어디자인과";
+                break;
+        }
+        return info;
 
+    }
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
