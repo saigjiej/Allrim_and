@@ -8,8 +8,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Bundle;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class MealActivity extends AppCompatActivity {
