@@ -1,4 +1,4 @@
-package com.example.allrim;
+/*package com.example.allrim;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +26,7 @@ public class AfterLoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_afterlogin);
+        setContentView(R.layout.activity_inputinfo);
 
         mAuth = FirebaseAuth.getInstance();
         String email =  mAuth.getCurrentUser().getEmail();
@@ -63,4 +63,4 @@ public class AfterLoginActivity extends AppCompatActivity {
     private void revokeAccess() {
         mAuth.getCurrentUser().delete();
     }
-}
+}*/
