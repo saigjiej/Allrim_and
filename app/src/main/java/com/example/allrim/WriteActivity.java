@@ -13,13 +13,16 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import android.os.Bundle;
 
-public class CommunityMainActivity extends AppCompatActivity {
+import android.os.Bundle;
+
+public class WriteActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_community_main);
+        setContentView(R.layout.activity_write);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -38,22 +41,22 @@ public class CommunityMainActivity extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.navigation_item_notice:
-                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_schedule:
-                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_writing:
-                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_comment:
-                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_set:
-                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_board:
-                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                 }
                 return false;
