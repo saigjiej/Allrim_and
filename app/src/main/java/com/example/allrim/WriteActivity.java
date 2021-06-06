@@ -40,22 +40,22 @@ public class WriteActivity extends AppCompatActivity {
 
                 int id = menuItem.getItemId();
                 switch (id) {
-                    case R.id.navigation_item_notice:
-                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.navigation_item_schedule:
+                    case R.id.navigation_item_info:
                         Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_writing:
                         Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
-                    case R.id.navigation_item_comment:
+                    case R.id.navigation_item_schedule:
+                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.navigation_item_meal:
+                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.navigation_item_lost:
                         Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_set:
-                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.navigation_item_board:
                         Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                 }

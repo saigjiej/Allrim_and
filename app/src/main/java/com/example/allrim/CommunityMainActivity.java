@@ -37,22 +37,22 @@ public class CommunityMainActivity extends AppCompatActivity {
 
                 int id = menuItem.getItemId();
                 switch (id) {
-                    case R.id.navigation_item_notice:
-                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.navigation_item_schedule:
+                    case R.id.navigation_item_info:
                         Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_writing:
                         Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
-                    case R.id.navigation_item_comment:
+                    case R.id.navigation_item_schedule:
+                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.navigation_item_meal:
+                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.navigation_item_lost:
                         Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_set:
-                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.navigation_item_board:
                         Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                 }
