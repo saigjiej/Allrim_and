@@ -13,12 +13,12 @@
 
     <string name="title_activity_writing">WritingActivity</string>
 
-    <string name="notice">알림</string>
-    <string name="schedule">시간표</string>
+    <string name="info">내 정보</string>
     <string name="writing">내가 쓴 글</string>
+    <string name="schedule">시간표</string>
     <string name="meal">오늘의 급식</string>
+    <string name="lost">분실물</string>
     <string name="set">설정</string>
-    <string name="board">게시판 종류</string>
 
     <string name="title">글쓰기</string>
     <string name="nickname">닉네임</string>

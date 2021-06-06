@@ -1,13 +1,11 @@
 package com.example.allrim;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,17 +14,11 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.core.view.GravityCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -66,24 +58,26 @@ public class MainActivity extends AppCompatActivity {
                 mDrawerLayout.closeDrawers();
 
                 int id = menuItem.getItemId();
-
+                Intent intent;
                 switch (id) {
-                    case R.id.navigation_item_notice:
+                    case R.id.navigation_item_info:
+                        intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.navigation_item_writing:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_schedule:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
-                    case R.id.navigation_item_writing:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                    case R.id.navigation_item_meal:
+                        intent = new Intent(getApplicationContext(), MealActivity.class);
+                        startActivity(intent);
                         break;
-                    case R.id.navigation_item_comment:
+                    case R.id.navigation_item_lost:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_set:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.navigation_item_board:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                 }
@@ -94,13 +88,27 @@ public class MainActivity extends AppCompatActivity {
             Uri photoUrl = mAuth.getCurrentUser().getPhotoUrl(); // MainActivity로 부터 프로필사진 Url 전달받음
 
             iv_profile = headerView.findViewById(R.id.img_userImage);
-            Glide.with(this).load(photoUrl).into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
+            Glide.with(this).load(photoUrl).circleCrop().into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
 
             tv_nickname = (TextView) headerView.findViewById(R.id.tv_userName);
             tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
+
+            headerView.findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
         }
 
     }
+
+    // 버튼 클릭 부분
+    View.OnClickListener onClickListener = v -> {
+        switch(v.getId()){
+            case R.id.bt_logout:
+                signOut();
+                Intent intent = new Intent(getApplicationContext(), loginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
+        }
+    };
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -114,16 +122,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    // 버튼 클릭 부분
-    View.OnClickListener onClickListener = v -> {
-        switch(v.getId()){
-            case R.id.logoutButton:
-                signOut();
-                finishAffinity();
-                break;
-        }
-    };
 
     private void signOut() {
         FirebaseAuth.getInstance().signOut();
