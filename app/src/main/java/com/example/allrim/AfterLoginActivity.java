@@ -47,10 +47,18 @@ public class AfterLoginActivity extends AppCompatActivity {
         switch(v.getId()){
             case R.id.bt_move:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
 
     private void revokeAccess() {
         mAuth.getCurrentUser().delete();

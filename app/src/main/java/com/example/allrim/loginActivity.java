@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -32,7 +33,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onCreate(Bundle savedInstanceState) { // 앱이 실행될 때 처음 수행되는 곳
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_page);
+        setContentView(R.layout.activity_login);
         auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화
 
         if (auth.getCurrentUser() != null) {
@@ -47,7 +48,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
                 .build();
         googleApiClient = GoogleSignIn.getClient(this, gso);
 
-        findViewById(R.id.btn_google).setOnClickListener(onClickListener);
+        findViewById(R.id.bt_login).setOnClickListener(onClickListener);
     }
 
     //자동로그인
@@ -64,7 +65,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
     // 버튼 클릭 부분
     View.OnClickListener onClickListener = v -> {
         switch(v.getId()){
-            case R.id.btn_google:
+            case R.id.bt_login:
                 login();
                 break;
         }
@@ -96,15 +97,15 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    /*private void signOut(){
-        googleApiClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // ...
-                    }
-                });
-    }*/
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("알림");
+        builder.setMessage("앱을 종료하시겠습니까?");
+        builder.setNegativeButton("취소",(dialog, which) -> dialog.cancel());
+        builder.setPositiveButton("종료", (dialog, which) -> finishAffinity());
+        builder.show();
+    }
 
     private void resultLogin(GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
@@ -126,6 +127,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
     private void updateUI(FirebaseUser user) { //update ui code here
         if (user != null) {
             Intent intent = new Intent(this, AfterLoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
             startActivity(intent);
             finish();
         }
