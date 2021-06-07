@@ -1,7 +1,5 @@
 package com.example.allrim;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,11 +18,12 @@ import android.net.Uri;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Bundle;
 
-public class CommunityMainActivity extends AppCompatActivity {
+public class LostActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
     private DrawerLayout mDrawerLayout;
 
@@ -34,7 +33,7 @@ public class CommunityMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_community_main);
+        setContentView(R.layout.activity_lost);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -65,10 +64,10 @@ public class CommunityMainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_writing:
-                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LostActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_schedule:
-                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LostActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_meal:
                         intent = new Intent(this, MealActivity.class);
@@ -76,10 +75,10 @@ public class CommunityMainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_lost:
-                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LostActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_set:
-                        Toast.makeText(CommunityMainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LostActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                 }
             }

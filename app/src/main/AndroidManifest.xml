@@ -27,9 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CommunityMainActivity" >
-        </activity>
         <activity android:name=".loginActivity" >
+        </activity>
+        <activity android:name=".LostActivity" >
         </activity>
         <activity android:name=".MealActivity" >
         </activity>
