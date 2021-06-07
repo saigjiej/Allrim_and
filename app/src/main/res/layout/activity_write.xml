@@ -60,7 +60,6 @@
             android:text="등록"
             android:background="@drawable/square"/>
 
-
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView

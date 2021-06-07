@@ -18,9 +18,14 @@ import android.net.Uri;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Bundle;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class MealActivity extends AppCompatActivity {

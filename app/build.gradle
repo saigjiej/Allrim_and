@@ -50,6 +50,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0' // 글라이드 이미지 로딩2
 
     implementation 'com.google.android.gms:play-services-auth:19.0.0' // Google Play services library
+    //Jsoup 추가
+    implementation 'org.jsoup:jsoup:1.11.3' //HTML Parser
 
     // 툴바
     //noinspection GradleCompatible

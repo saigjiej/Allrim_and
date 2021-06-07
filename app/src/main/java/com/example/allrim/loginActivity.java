@@ -51,6 +51,17 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
         findViewById(R.id.bt_login).setOnClickListener(onClickListener);
     }
 
+    //자동로그인
+    @Override
+    protected void onStart() {
+        //프래그먼트에서는 public이지만 여기에서는 protected
+        super.onStart();
+        FirebaseUser user = auth.getCurrentUser(); //현재 로그인되어있는 사용자를 가져옴
+        if(user!=null){
+            Toast.makeText(this,"자동 로그인: "+user.getUid(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
     // 버튼 클릭 부분
     View.OnClickListener onClickListener = v -> {
         switch(v.getId()){
