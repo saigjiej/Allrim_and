@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,7 +38,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
         auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화
 
         if (auth.getCurrentUser() != null) {
-            Intent intent = new Intent(getApplication(), MainActivity.class);
+            Intent intent = new Intent(getApplication(), loginActivity.class);
             startActivity(intent);
             finish();
         }
@@ -132,7 +133,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
                 // 없으면 회원정보 db에 인서트
             }
             //user.getEmail()이 디비에 있으면 걍 로그인
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, loginActivity.class);
             startActivity(intent);
             finish();
         }
