@@ -3,6 +3,7 @@ package com.example.allrim;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.bumptech.glide.Glide;
@@ -72,7 +74,9 @@ public class MyPageActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_lost:
-                        Toast.makeText(MyPageActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, LostActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
                         Toast.makeText(MyPageActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
@@ -105,6 +109,19 @@ public class MyPageActivity extends AppCompatActivity {
                 break;
         }
     };
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.action_settings:
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void signOut() {
         FirebaseAuth.getInstance().signOut();

@@ -80,7 +80,9 @@ public class MealActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_lost:
-                        Toast.makeText(MealActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, LostActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
                         Toast.makeText(MealActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();

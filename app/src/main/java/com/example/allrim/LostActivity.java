@@ -49,7 +49,7 @@ public class LostActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = navigationView.getHeaderView(0);
 
-        navigationView.getMenu().getItem(3).setChecked(true);
+        navigationView.getMenu().getItem(4).setChecked(true);
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             mDrawerLayout.closeDrawers();
@@ -75,7 +75,9 @@ public class LostActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_lost:
-                        Toast.makeText(LostActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, LostActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
                         Toast.makeText(LostActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();

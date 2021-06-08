@@ -75,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_lost:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, LostActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
