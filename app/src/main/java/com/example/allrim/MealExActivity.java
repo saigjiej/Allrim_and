@@ -17,8 +17,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-public class MealEx2Activity extends Activity {
+public class MealExActivity extends Activity {
     EditText inputDateText;
     TextView text;
 
@@ -33,6 +36,19 @@ public class MealEx2Activity extends Activity {
 
         inputDateText=findViewById(R.id.input_dateText);
         text=findViewById(R.id.showMenu);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                data=getXmlData(); //메소드 만들어줘야함
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        text.setText(data);
+                    }
+                });
+            }
+        }).start();
     }
 
     //Button을 클릭했을 때 자동으로 호출되는 callback method
@@ -59,12 +75,23 @@ public class MealEx2Activity extends Activity {
         StringBuffer buffer = new StringBuffer();
         String str=inputDateText.getText().toString(); //EditText에 입력된 값을 String으로 받아오기
         String date= URLEncoder.encode(str); //한글의 경우 인식이 안되기 때문에 utf-8로 해줌
-        //String query;
+
+        SimpleDateFormat dtf = new SimpleDateFormat("yyyyMMdd"); //20210609 이런 형태로 받기
+        Calendar calendar = Calendar.getInstance();
+        Date today = calendar.getTime();
+        String today_str = dtf.format(today);
+        Log.d("오늘날짜 ",today_str);
+        Log.d("입력날짜 ",date);
+
+        if(date.length()!= 0){
+            today_str=date;
+        }
+        //옆에 오늘 날짜로 돌아가는 버튼이 있어도 좋을 듯
         String queryURL="https://open.neis.go.kr/hub/mealServiceDietInfo?" +
                 "ATPT_OFCDC_SC_CODE=B10&" +
                 "SD_SCHUL_CODE=7010569&" +
                 //"MMEAL_SC_CODE=2&" +
-                "MLSV_YMD="+date+"&" +
+                "MLSV_YMD="+today_str+"&" +
                 "Key="+key+"&" +
                 "Type=xml&pIndex=1&pSize=5";
         
@@ -109,7 +136,8 @@ public class MealEx2Activity extends Activity {
                             xpp.next();
                             String[]menu=xpp.getText().split("<br/>");
                             for(int i=0;i<menu.length;i++){
-                                buffer.append(menu[i]+"\n");
+                                buffer.append(menu[i]+"\n"); //뒤에 숫자 나오는 것도 삭제하기 
+                                //문자열 효과 넣기
                             }
                         }
                         break;
