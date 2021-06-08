@@ -23,13 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Bundle;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-
-
-public class MealActivity extends AppCompatActivity {
+public class LostActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
     private DrawerLayout mDrawerLayout;
 
@@ -39,7 +33,7 @@ public class MealActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meal);
+        setContentView(R.layout.activity_lost);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -55,7 +49,7 @@ public class MealActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = navigationView.getHeaderView(0);
 
-        navigationView.getMenu().getItem(3).setChecked(true);
+        navigationView.getMenu().getItem(4).setChecked(true);
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             mDrawerLayout.closeDrawers();
@@ -70,10 +64,10 @@ public class MealActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_writing:
-                        Toast.makeText(MealActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LostActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_schedule:
-                        Toast.makeText(MealActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LostActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_meal:
                         intent = new Intent(this, MealActivity.class);
@@ -86,7 +80,7 @@ public class MealActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
-                        Toast.makeText(MealActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LostActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                 }
             }

@@ -24,6 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Allrim"
         >
+
         <activity android:name=".MealExActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -31,21 +32,33 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".LostActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".loginActivity" >
+        </activity>
+<!--        <activity android:name=".LostActivity" />-->
         <activity android:name=".MealActivity" >
         </activity>
         <activity android:name=".MyPageActivity" >
-        </activity>
-        <activity android:name=".AfterLoginActivity" >
-        </activity>
-        <activity android:name=".loginActivity" >
-        </activity>
-        <activity android:name=".CommunityMainActivity" >
         </activity>
         <activity android:name=".WriteActivity" >
         </activity>
