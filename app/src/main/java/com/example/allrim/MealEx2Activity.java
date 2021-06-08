@@ -3,6 +3,7 @@ package com.example.allrim;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -57,7 +58,7 @@ public class MealEx2Activity extends Activity {
     public String getXmlData(){
         StringBuffer buffer = new StringBuffer();
         String str=inputDateText.getText().toString(); //EditText에 입력된 값을 String으로 받아오기
-        String date= URLEncoder.encode(str); //한글의 경우 인식이 안되기 때문에 utf-8로 해주
+        String date= URLEncoder.encode(str); //한글의 경우 인식이 안되기 때문에 utf-8로 해줌
         //String query;
         String queryURL="https://open.neis.go.kr/hub/mealServiceDietInfo?" +
                 "ATPT_OFCDC_SC_CODE=B10&" +
@@ -88,85 +89,28 @@ public class MealEx2Activity extends Activity {
                         break;
                     case XmlPullParser.START_TAG:
                         tag=xpp.getName(); //태그이름 가져오기
+                        Log.d("test",tag);
 
                         if(tag.equals("row")); //첫번째 검색결과
-                        else if(tag.equals("ATPT_OFCDC_SC_CODE")){
-                            buffer.append("시도교육청코드: ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
-                        }
-                        else if(tag.equals("ATPT_OFCDC_SC_NM")){
-                            buffer.append("교육청 이름: ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
-                        }
-                        else if(tag.equals("SD_SCHUL_CODE")){
-                            buffer.append("학교 코드: ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
-                        }
-                        else if(tag.equals("SCHUL_NM")){
-                            buffer.append("학교명: ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
-                        }
-                        else if(tag.equals("MMEAL_SC_CODE")){
-                            buffer.append("급식 코드: ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
-                        }
                         else if(tag.equals("MMEAL_SC_NM")){
                             buffer.append("급식 종류: ");
                             xpp.next();
                             buffer.append(xpp.getText());
                             buffer.append("\n");
-                        }else if(tag.equals("MLSV_YMD")){
+                        }
+                        else if(tag.equals("MLSV_YMD")){
                             buffer.append("날짜: ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
-                        }else if(tag.equals("MLSV_FGR")){
-                            buffer.append("급식인원수: ");
                             xpp.next();
                             buffer.append(xpp.getText());
                             buffer.append("\n");
                         }
                         else if(tag.equals("DDISH_NM")){
-                            buffer.append("식사: ");
+                            buffer.append("메뉴 \n");
                             xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
-                        }
-                        else if(tag.equals("ORPLC_INFO")){
-                            buffer.append("원산지정보: ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
-                        }else if(tag.equals("CAL_INFO")){
-                            buffer.append("칼로리정보: ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
-                        }else if(tag.equals("NTR_INFO")){
-                            buffer.append("영양정보: ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
-                        }else if(tag.equals("MLSV_FROM_YMD")){
-                            buffer.append("급식 시작 일자: ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
-                        } else if(tag.equals("MLSV_TO_YMD")){
-                            buffer.append("급식 종료 일자: ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
+                            String[]menu=xpp.getText().split("<br/>");
+                            for(int i=0;i<menu.length;i++){
+                                buffer.append(menu[i]+"\n");
+                            }
                         }
                         break;
                         case XmlPullParser.TEXT:break;
@@ -180,7 +124,15 @@ public class MealEx2Activity extends Activity {
         }catch(Exception e){
             e.printStackTrace();
         }
-        buffer.append("파싱 끝 \n");
-        return buffer.toString(); //StringBuffer를 문자열 객체로 반환
+        //buffer.append("파싱 끝 \n");
+        String result="";
+        Log.d("버퍼내용",buffer.toString());
+        Log.d("버퍼길이",Integer.toString(buffer.length()));
+        if(buffer.length()==0){
+            result="오늘은 급식이 나오지 않습니다.";
+        }else{
+            result=buffer.toString();
+        }
+        return result; //StringBuffer를 문자열 객체로 반환
     }//end of getXmlData method
 }
