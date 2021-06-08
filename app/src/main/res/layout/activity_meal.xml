@@ -20,15 +20,25 @@
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
-        <TextView
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="오늘의 급식"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:textSize="25sp"
-            android:layout_marginTop="200px"
-            android:layout_marginLeft="50px"/>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:fillViewport="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="오늘의 급식"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_marginTop="200px"
+                android:layout_marginLeft="50px"/>
+
+        </ScrollView>
+
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
