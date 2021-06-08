@@ -28,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+
 public class MealActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
     private DrawerLayout mDrawerLayout;
