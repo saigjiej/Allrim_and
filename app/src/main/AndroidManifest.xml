@@ -28,19 +28,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LostActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".loginActivity" >
         </activity>
-        <activity android:name=".LostActivity" >
+
+        <activity android:name=".MyPageActivity" >
+        </activity>
+        <activity android:name=".MyWritingActivity" >
+        </activity>
+        <activity android:name=".ScheduleActivity" >
         </activity>
         <activity android:name=".MealActivity" >
         </activity>
-        <activity android:name=".MyPageActivity" >
+        <activity android:name=".LostActivity">
+        </activity>
+        <activity android:name=".SettingActivity">
         </activity>
         <activity android:name=".WriteActivity" >
         </activity>
