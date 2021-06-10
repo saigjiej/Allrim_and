@@ -23,7 +23,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class MealActivity extends AppCompatActivity {
+public class MyWritingActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
     private DrawerLayout mDrawerLayout;
 
@@ -33,7 +33,7 @@ public class MealActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meal);
+        setContentView(R.layout.activity_my_writing);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -49,7 +49,7 @@ public class MealActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = navigationView.getHeaderView(0);
 
-        navigationView.getMenu().getItem(3).setChecked(true); // 페이지별로 바꾸기
+        navigationView.getMenu().getItem(1).setChecked(true); // 페이지별로 바꾸기
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             mDrawerLayout.closeDrawers();

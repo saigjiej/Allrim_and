@@ -59,27 +59,33 @@ public class MyPageActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.navigation_item_info:
                         intent = new Intent(this, MyPageActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_writing:
-                        Toast.makeText(MyPageActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, MyWritingActivity.class);
+                        finish();
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_schedule:
-                        Toast.makeText(MyPageActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, ScheduleActivity.class);
+                        finish();
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_meal:
                         intent = new Intent(this, MealActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_lost:
                         intent = new Intent(this, LostActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
-                        Toast.makeText(MyPageActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, SettingActivity.class);
+                        finish();
+                        startActivity(intent);
                         break;
                 }
             }
