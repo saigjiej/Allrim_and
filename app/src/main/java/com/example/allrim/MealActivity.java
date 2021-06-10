@@ -22,7 +22,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-
 public class MealActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
     private DrawerLayout mDrawerLayout;
