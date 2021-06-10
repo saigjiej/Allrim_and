@@ -24,7 +24,7 @@
             android:id="@+id/input_dateText"
             android:layout_width="250dp"
             android:layout_height="match_parent"
-            android:hint="오늘 날짜를 입력해주세요."/>
+            android:hint="날짜 입력 ex) 0624"/>
 
         <Button
             android:id="@+id/search_btn"
@@ -38,7 +38,6 @@
     </LinearLayout>
 
     <ScrollView
-
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

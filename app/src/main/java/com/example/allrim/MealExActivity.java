@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+
 public class MealExActivity extends Activity {
     EditText inputDateText;
     TextView text;
@@ -90,7 +91,6 @@ public class MealExActivity extends Activity {
         String queryURL="https://open.neis.go.kr/hub/mealServiceDietInfo?" +
                 "ATPT_OFCDC_SC_CODE=B10&" +
                 "SD_SCHUL_CODE=7010569&" +
-                //"MMEAL_SC_CODE=2&" +
                 "MLSV_YMD="+today_str+"&" +
                 "Key="+key+"&" +
                 "Type=xml&pIndex=1&pSize=5";
@@ -120,7 +120,6 @@ public class MealExActivity extends Activity {
 
                         if(tag.equals("row")); //첫번째 검색결과
                         else if(tag.equals("MMEAL_SC_NM")){
-                            buffer.append("급식 종류: ");
                             xpp.next();
                             buffer.append(xpp.getText());
                             buffer.append("\n");
@@ -136,7 +135,9 @@ public class MealExActivity extends Activity {
                             xpp.next();
                             String[]menu=xpp.getText().split("<br/>");
                             for(int i=0;i<menu.length;i++){
-                                buffer.append(menu[i]+"\n"); //뒤에 숫자 나오는 것도 삭제하기 
+                                menu[i]=menu[i].replaceAll("[0-9]","");
+                                menu[i]=menu[i].replace('.',' ');
+                                buffer.append(menu[i]+"\n"); //뒤에 숫자 나오는 것도 삭제하기
                                 //문자열 효과 넣기
                             }
                         }
