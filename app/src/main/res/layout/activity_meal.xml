@@ -46,7 +46,6 @@
                 android:layout_marginLeft="50px"/>
 
         </ScrollView>
-
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
