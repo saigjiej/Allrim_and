@@ -64,20 +64,18 @@
                 android:clickable="true"
                 android:onClick="buttonClicked"/>
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/showMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="13sp"
-                    android:textStyle="bold"/>
-            </ScrollView>
-
         </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/showMenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="13sp"
+                android:textStyle="bold"/>
+        </ScrollView>
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
