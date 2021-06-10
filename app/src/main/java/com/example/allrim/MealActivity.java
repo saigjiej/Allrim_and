@@ -1,5 +1,14 @@
 package com.example.allrim;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,21 +22,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-
-import android.widget.TextView;
-import android.widget.Toast;
 import android.os.Bundle;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-
 
 public class MealActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
@@ -55,7 +54,7 @@ public class MealActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = navigationView.getHeaderView(0);
 
-        navigationView.getMenu().getItem(3).setChecked(true);
+        navigationView.getMenu().getItem(3).setChecked(true); // 페이지별로 바꾸기
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             mDrawerLayout.closeDrawers();
@@ -66,27 +65,33 @@ public class MealActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.navigation_item_info:
                         intent = new Intent(this, MyPageActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_writing:
-                        Toast.makeText(MealActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, MyWritingActivity.class);
+                        finish();
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_schedule:
-                        Toast.makeText(MealActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, ScheduleActivity.class);
+                        finish();
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_meal:
                         intent = new Intent(this, MealActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_lost:
                         intent = new Intent(this, LostActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
-                        Toast.makeText(MealActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, SettingActivity.class);
+                        finish();
+                        startActivity(intent);
                         break;
                 }
             }

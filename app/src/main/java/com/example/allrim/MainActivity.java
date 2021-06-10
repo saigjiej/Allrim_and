@@ -61,17 +61,19 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent;
                 switch (id) {
                     case R.id.navigation_item_info:
-                        intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                        intent = new Intent(this, MyPageActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_writing:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, MyWritingActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_schedule:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, ScheduleActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_meal:
-                        intent = new Intent(getApplicationContext(), MealActivity.class);
+                        intent = new Intent(this, MealActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_lost:
@@ -79,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, SettingActivity.class);
+                        startActivity(intent);
                         break;
                 }
                 return false;
