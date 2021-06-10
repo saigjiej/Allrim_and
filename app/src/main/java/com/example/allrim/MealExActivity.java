@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -22,13 +23,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class MealExActivity extends Activity {
-    EditText inputDateText;
-    TextView text;
-
-    XmlPullParser xpp;
-    String key = "6d21d81e36ec443c80712c99bc327083"; //인증키
-    String data;
+public class MealExActivity extends AppCompatActivity {
+    private EditText inputDateText;
+    private TextView text;
+    private XmlPullParser xpp;
+    private String key = "6d21d81e36ec443c80712c99bc327083"; //인증키
+    private String data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

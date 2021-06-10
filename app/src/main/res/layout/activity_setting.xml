@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MealActivity">
+    tools:context=".LostActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,24 +28,15 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <ScrollView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:fillViewport="true">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="설정"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:layout_marginTop="200px"
-                android:layout_marginLeft="50px"/>
-
-        </ScrollView>
+            android:text="설정"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_marginTop="200px"
+            android:layout_marginLeft="50px"/>
 
     </RelativeLayout>
 

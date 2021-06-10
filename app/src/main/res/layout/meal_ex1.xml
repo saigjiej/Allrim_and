@@ -6,48 +6,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MealExActivity">
-
-<LinearLayout
-    android:id="@+id/activity_meal_ex1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    tools:context=".MealActivity">
 
     <LinearLayout
-
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/input_dateText"
-            android:layout_width="250dp"
-            android:layout_height="match_parent"
-            android:hint="날짜 입력 ex) 0624"/>
+        android:layout_height="match_parent"
+        android:padding="0px"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/search_btn"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="검색"
-            android:textSize="12sp"
-            android:clickable="true"
-            android:onClick="buttonClicked"/>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#11732C"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAlignBottom="false"
+                android:src="@drawable/logo" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/input_dateText"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:hint="오늘 날짜를 입력해주세요."/>
+
+            <Button
+                android:id="@+id/search_btn"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="검색"
+                android:textSize="12sp"
+                android:clickable="true"
+                android:onClick="buttonClicked"/>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/showMenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="13sp"
+                android:textStyle="bold"/>
+        </ScrollView>
 
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/drawer">
+    </com.google.android.material.navigation.NavigationView>
 
-        <TextView
-            android:id="@+id/showMenu"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="13sp"
-            android:textStyle="bold"/>
-    </ScrollView>
 
-</LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

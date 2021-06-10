@@ -28,24 +28,54 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <ScrollView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:fillViewport="true">
+            android:text="오늘의 급식"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_marginTop="200px"
+            android:layout_marginLeft="50px"/>
 
-            <TextView
-                android:layout_width="match_parent"
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="300px"
+            android:layout_marginLeft="50px"
+            >
+            <EditText
+                android:id="@+id/input_dateText"
+                android:layout_width="250dp"
                 android:layout_height="match_parent"
-                android:text="오늘의 급식"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:layout_marginTop="200px"
-                android:layout_marginLeft="50px"/>
+                android:hint="오늘 날짜를 입력해주세요."/>
 
-        </ScrollView>
+            <Button
+                android:id="@+id/search_btn"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="검색"
+                android:textSize="12sp"
+                android:clickable="true"
+                android:onClick="buttonClicked"/>
+
+            <ScrollView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/showMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="13sp"
+                    android:textStyle="bold"/>
+            </ScrollView>
+
+        </LinearLayout>
+
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
