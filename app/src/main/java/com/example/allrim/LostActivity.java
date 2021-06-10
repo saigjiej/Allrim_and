@@ -60,26 +60,32 @@ public class LostActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.navigation_item_info:
                         intent = new Intent(this, MyPageActivity.class);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_writing:
                         intent = new Intent(this, MyWritingActivity.class);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_schedule:
                         intent = new Intent(this, ScheduleActivity.class);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_meal:
                         intent = new Intent(this, MealActivity.class);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_lost:
                         intent = new Intent(this, LostActivity.class);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
                         intent = new Intent(this, SettingActivity.class);
+                        finish();
                         startActivity(intent);
                         break;
                 }
