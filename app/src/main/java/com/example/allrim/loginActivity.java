@@ -133,7 +133,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
                 // 없으면 회원정보 db에 인서트
             }
             //user.getEmail()이 디비에 있으면 걍 로그인
-            Intent intent = new Intent(this, loginActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         }
