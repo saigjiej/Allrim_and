@@ -54,9 +54,24 @@
             android:lines="15"/>
 
         <Button
+            android:layout_width="980px"
+            android:layout_height="120px"
+            android:layout_marginTop="1200px"
+            android:layout_marginLeft="50px"
+            android:text="사진 등록"
+            android:background="@drawable/square"/>
+
+        <ImageView
+            android:layout_width="980px"
+            android:layout_height="300px"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="1350px"
+            android:background="@drawable/square"/>
+
+        <Button
             android:layout_width="480px"
             android:layout_height="120px"
-            android:layout_marginTop="1300px"
+            android:layout_marginTop="1700px"
             android:layout_marginLeft="50px"
             android:text="취소"
             android:background="@drawable/square"/>
@@ -65,10 +80,13 @@
             android:id="@+id/submitBtn"
             android:layout_width="480px"
             android:layout_height="120px"
-            android:layout_marginTop="1300px"
+            android:layout_marginTop="1700px"
             android:layout_marginLeft="550px"
             android:text="등록"
             android:background="@drawable/square"/>
+
+
+
 
     </RelativeLayout>
 
