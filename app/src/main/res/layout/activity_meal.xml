@@ -8,10 +8,13 @@
     android:fitsSystemWindows="true"
     tools:context=".MealActivity">
 
-    <RelativeLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="0px">
+        android:orientation="vertical"
+        android:padding="0px"
+        >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -30,53 +33,50 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center|left"
             android:text="오늘의 급식"
             android:textColor="#000000"
-            android:textStyle="bold"
-            android:textSize="25sp"
-            android:layout_marginTop="200px"
-            android:layout_marginLeft="50px"/>
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:layout_marginTop="300px"
-            android:layout_marginLeft="50px"
             >
+
             <EditText
                 android:id="@+id/input_dateText"
                 android:layout_width="250dp"
                 android:layout_height="match_parent"
-                android:hint="오늘 날짜를 입력해주세요."/>
+                android:hint="날짜 입력 ex)0624."
+                android:layout_marginLeft="20dp"
+                />
 
             <Button
                 android:id="@+id/search_btn"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
                 android:text="검색"
                 android:textSize="12sp"
                 android:clickable="true"
                 android:onClick="buttonClicked"/>
 
-            <ScrollView
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/showMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="13sp"
-                    android:textStyle="bold"/>
-            </ScrollView>
-
         </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/showMenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="13sp"
+                android:textStyle="bold"/>
+        </ScrollView>
+    </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
