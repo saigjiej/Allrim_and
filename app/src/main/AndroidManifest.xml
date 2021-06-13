@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.allrim" >
+    package="com.example.allrim">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -21,29 +22,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Allrim">
-        <activity android:name=".TestActivity">
+        <activity android:name=".LostActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LostActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".loginActivity" >
-        </activity>
-        <activity android:name=".LostActivity" >
-        </activity>
-        <activity android:name=".MealActivity" >
-        </activity>
-        <activity android:name=".MyPageActivity" >
-        </activity>
-        <activity android:name=".WriteActivity" >
-        </activity>
+        <activity android:name=".loginActivity" />
+        <activity android:name=".MealActivity" />
+        <activity android:name=".MyPageActivity" />
+        <activity android:name=".WriteActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
