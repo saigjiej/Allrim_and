@@ -50,7 +50,7 @@ public class WriteActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
     private DrawerLayout mDrawerLayout;
 
-    private static String IP_ADDRESS="34.225.140.23";
+    private static String IP_ADDRESS="localhost";
     private static String TAG="insert";
 
     private EditText mEditTitle; //타이틀
@@ -82,7 +82,7 @@ public class WriteActivity extends AppCompatActivity {
                 //후에 InsertData 넣어주기
                 InsertData task = new InsertData();
                 //ubuntu 서버에 php 파일 넣어주기 => 성공
-                task.execute("http://"+IP_ADDRESS+"/insert.php",title,contents);
+                task.execute("http://"+IP_ADDRESS+"/Allrim_test/insert.php",title,contents);
 
                 mEditTitle.setText("");
                 mEditContent.setText("");
@@ -95,9 +95,9 @@ public class WriteActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ActionBar actionBar = getSupportActionBar(); // -> null이 반환된다.
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.menu);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.menu);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
