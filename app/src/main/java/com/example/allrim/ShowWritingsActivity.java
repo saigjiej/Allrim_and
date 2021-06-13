@@ -5,7 +5,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,17 +25,21 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MyPageActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth ;
+public class ShowWritingsActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
     private DrawerLayout mDrawerLayout;
 
     private TextView tv_nickname; // 닉네임 text
     private ImageView iv_profile; // 이미지 뷰
 
+    private ListView listview;
+    private ListViewAdapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_page);
+        setContentView(R.layout.activity_show_writings);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -54,7 +61,7 @@ public class MyPageActivity extends AppCompatActivity {
             mDrawerLayout.closeDrawers();
 
             int id = menuItem.getItemId();
-            if(!menuItem.isChecked()){
+            if (!menuItem.isChecked()) {
                 Intent intent;
                 switch (id) {
                     case R.id.navigation_item_info:
@@ -102,11 +109,65 @@ public class MyPageActivity extends AppCompatActivity {
         tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
 
         headerView.findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
+
+        // 리스트뷰 객체 생성 및 Adapter 설정
+        listview = (ListView) findViewById(R.id.writing_listview);
+
+        // Adapter 생성
+        adapter = new ListViewAdapter();
+
+        // 리스트 뷰 아이템 추가.
+        adapter.addItem("익깅", "배고프다", "진짜배고픔");
+        adapter.addItem("익깅2", "정처기어카지", "개망한듯");
+        adapter.addItem("익깅3", "집가고싶다", "오늘집감");
+        // 리스트 뷰 아이템 추가.
+        adapter.addItem("익깅", "배고프다", "진짜배고픔");
+        adapter.addItem("익깅2", "정처기어카지", "개망한듯");
+        adapter.addItem("익깅3", "집가고싶다", "오늘집감");
+        // 리스트 뷰 아이템 추가.
+        adapter.addItem("익깅", "배고프다", "진짜배고픔");
+        adapter.addItem("익깅2", "정처기어카지", "개망한듯");
+        adapter.addItem("익깅3", "집가고싶다", "오늘집감");
+        // 리스트 뷰 아이템 추가.
+        adapter.addItem("익깅", "배고프다", "진짜배고픔");
+        adapter.addItem("익깅2", "정처기어카지", "개망한듯");
+        adapter.addItem("익깅3", "집가고싶다", "오늘집감");
+
+        // 리스트뷰의 높이를 계산에서 layout 크기를 설정
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++){
+            View listItem = adapter.getView(i, null, listview);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listview.getLayoutParams();
+        params.height = totalHeight + (listview.getDividerHeight() * (adapter.getCount() - 1));
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
+                final ListViewItem item = (ListViewItem) adapter.getItem(a_position);
+                Intent intent = new Intent(getApplicationContext(), ShowWritingActivity.class);
+                intent.putExtra("title", item.getTitle());
+                startActivity(intent);
+            }
+        });
+
+        listview.setLayoutParams(params);
+        listview.setAdapter(adapter);
+
+
+
+        String community = getIntent().getStringExtra("community");
+
+        TextView commnunity_name = findViewById(R.id.community_name);
+        commnunity_name.setText(community);
     }
 
     // 버튼 클릭 부분
     View.OnClickListener onClickListener = v -> {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.bt_logout:
                 signOut();
                 Intent intent = new Intent(getApplicationContext(), loginActivity.class);

@@ -61,24 +61,28 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent;
                 switch (id) {
                     case R.id.navigation_item_info:
-                        intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                        intent = new Intent(this, MyPageActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_writing:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, MyWritingActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_schedule:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, ScheduleActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_meal:
-                        intent = new Intent(getApplicationContext(), MealActivity.class);
+                        intent = new Intent(this, MealActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_lost:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, LostActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, SettingActivity.class);
+                        startActivity(intent);
                         break;
                 }
                 return false;
@@ -94,17 +98,43 @@ public class MainActivity extends AppCompatActivity {
             tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
 
             headerView.findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
+            findViewById(R.id.community_software).setOnClickListener(onClickListener);
+            findViewById(R.id.community_solution).setOnClickListener(onClickListener);
+            findViewById(R.id.community_design).setOnClickListener(onClickListener);
+            findViewById(R.id.community_dormitory).setOnClickListener(onClickListener);
+            
         }
 
     }
 
     // 버튼 클릭 부분
     View.OnClickListener onClickListener = v -> {
+        Intent intent;
         switch(v.getId()){
             case R.id.bt_logout:
                 signOut();
-                Intent intent = new Intent(getApplicationContext(), loginActivity.class);
+                intent = new Intent(getApplicationContext(), loginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
+            case R.id.community_software:
+                intent = new Intent(getApplicationContext(), ShowWritingsActivity.class);
+                intent.putExtra("community", "뉴미디어소프트웨어과");
+                startActivity(intent);
+                break;
+            case R.id.community_solution:
+                intent = new Intent(getApplicationContext(), ShowWritingsActivity.class);
+                intent.putExtra("community", "뉴미디어웹솔루션과");
+                startActivity(intent);
+                break;
+            case R.id.community_design:
+                intent = new Intent(getApplicationContext(), ShowWritingsActivity.class);
+                intent.putExtra("community", "뉴미디어디자인과");
+                startActivity(intent);
+                break;
+            case R.id.community_dormitory:
+                intent = new Intent(getApplicationContext(), ShowWritingsActivity.class);
+                intent.putExtra("community", "기숙사 커뮤니티");
                 startActivity(intent);
                 break;
         }

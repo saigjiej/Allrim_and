@@ -1,5 +1,6 @@
 package com.example.allrim;
 
+import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -15,21 +16,43 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
+import android.renderscript.ScriptGroup;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import android.widget.Toast;
 import android.os.Bundle;
 
 import android.os.Bundle;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class WriteActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
     private DrawerLayout mDrawerLayout;
 
+    private static String IP_ADDRESS = "125.141.36.87";
+    private static String TAG="phptest";
+    private EditText mTitleText;
+    private EditText mContentText;
     private TextView tv_nickname; // 닉네임 text
     private ImageView iv_profile; // 이미지 뷰
 
@@ -38,7 +61,8 @@ public class WriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
 
-
+        mTitleText=findViewById(R.id.editTextTextPersonName); //제목
+        mContentText=findViewById(R.id.editTextTextMultiLine); //내용
         mAuth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -99,6 +123,23 @@ public class WriteActivity extends AppCompatActivity {
         tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
 
         headerView.findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
+
+        //등록버튼 눌렀을 때 글 DB에 추가되기
+//        Button submitBtn = findViewById(R.id.submitBtn);
+//        submitBtn.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View v) {
+//                String title=mTitleText.getText().toString();
+//                String content=mContentText.getText().toString();
+//
+//                InsertData task=new InsertData();
+//                task.execute("http://"+IP_ADDRESS+"/Allrim_test1/insert.php",title,content);
+//
+//                mTitleText.setText("");
+//                mContentText.setText("");
+//            }
+        //});
     }
 
     // 버튼 클릭 부분
@@ -113,6 +154,16 @@ public class WriteActivity extends AppCompatActivity {
         }
     };
 
+private void signOut() {
+        FirebaseAuth.getInstance().signOut();
+        GoogleSignInClient googleApiClient = GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build());
+        googleApiClient.signOut();
+
+    }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
@@ -126,12 +177,65 @@ public class WriteActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void signOut() {
-        FirebaseAuth.getInstance().signOut();
-        GoogleSignInClient googleApiClient = GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build());
-        googleApiClient.signOut();
-    }
+//    //InsertData 클래스 시작
+//    class InsertData extends AsyncTask<String,Void,String>{
+//        ProgressDialog progressDialog = ProgressDialog.show(this,
+//                "Please wait",null,true,true);
+//
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//        }
+//
+//        //데이터삽입역할
+//        @Override
+//        protected String doInBackground(String... params) {
+//            String title=(String)params[1];
+//            String content=(String)params[2];
+//
+//            String serverURL=(String)params[0];
+//            String postParameters="title="+title+"&content="+content;
+//
+//            try{
+//                URL url = new URL(serverURL);
+//                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+//
+//                httpURLConnection.setReadTimeout(5000);
+//                httpURLConnection.setConnectTimeout(5000);
+//                httpURLConnection.setRequestMethod("POST");
+//                httpURLConnection.connect();
+//
+//                OutputStream opstream = httpURLConnection.getOutputStream();
+//                opstream.write(postParameters.getBytes("UTF-8"));
+//                opstream.flush();
+//                opstream.close();
+//
+//                int responseStatusCode =httpURLConnection.getResponseCode();
+//                Log.d("phptest","POST response-code : "+responseStatusCode);
+//
+//                InputStream ipstream;
+//                if(responseStatusCode == HttpURLConnection.HTTP_OK){
+//                    ipstream=httpURLConnection.getInputStream();
+//                }else{
+//                    ipstream=httpURLConnection.getErrorStream();
+//                }
+//
+//                InputStreamReader inputStreamReader = new InputStreamReader(ipstream,"UTF_8");
+//                BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+//
+//                StringBuilder sb=new StringBuilder();
+//                String line=null;
+//
+//                while((line=bufferedReader.readLine())!= null){
+//                    sb.append(line);
+//                }
+//
+//                bufferedReader.close();
+//                return sb.toString();
+//
+//            }catch(Exception e){
+//                return new String("Error: "+e.getMessage());
+//            }
+//        }
+
 }

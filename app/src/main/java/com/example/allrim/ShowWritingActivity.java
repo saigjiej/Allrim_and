@@ -5,9 +5,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,17 +24,21 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MyPageActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth ;
+public class ShowWritingActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
     private DrawerLayout mDrawerLayout;
 
     private TextView tv_nickname; // 닉네임 text
     private ImageView iv_profile; // 이미지 뷰
 
+    private ListView listview;
+    private ListViewAdapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_page);
+        setContentView(R.layout.activity_show_writing);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -54,7 +60,7 @@ public class MyPageActivity extends AppCompatActivity {
             mDrawerLayout.closeDrawers();
 
             int id = menuItem.getItemId();
-            if(!menuItem.isChecked()){
+            if (!menuItem.isChecked()) {
                 Intent intent;
                 switch (id) {
                     case R.id.navigation_item_info:
@@ -102,11 +108,16 @@ public class MyPageActivity extends AppCompatActivity {
         tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
 
         headerView.findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
+
+        String title = getIntent().getStringExtra("title");
+
+        TextView title_tv = findViewById(R.id.writing_title);
+        title_tv.setText(title);
     }
 
     // 버튼 클릭 부분
     View.OnClickListener onClickListener = v -> {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.bt_logout:
                 signOut();
                 Intent intent = new Intent(getApplicationContext(), loginActivity.class);
