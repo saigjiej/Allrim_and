@@ -25,12 +25,13 @@
         android:theme="@style/Theme.Allrim"
         >
 
-        <activity android:name=".MealExActivity">
+        <activity android:name=".WriteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -61,8 +62,8 @@
         </activity>
         <activity android:name=".SettingActivity">
         </activity>
-        <activity android:name=".WriteActivity" >
-        </activity>
+<!--        <activity android:name=".WriteActivity" >-->
+<!--        </activity>-->
         <activity android:name=".ShowWritingsActivity" >
         </activity>
         <activity android:name=".ShowWritingActivity" >

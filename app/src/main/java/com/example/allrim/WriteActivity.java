@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.renderscript.ScriptGroup;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,10 +50,13 @@ public class WriteActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
     private DrawerLayout mDrawerLayout;
 
-    private static String IP_ADDRESS = "125.141.36.87";
-    private static String TAG="phptest";
-    private EditText mTitleText;
-    private EditText mContentText;
+    private static String IP_ADDRESS="34.225.140.23";
+    private static String TAG="insert";
+
+    private EditText mEditTitle; //타이틀
+    private EditText mEditContent; //content
+    private TextView mTextViewResult; //결과 나오는 부분
+
     private TextView tv_nickname; // 닉네임 text
     private ImageView iv_profile; // 이미지 뷰
 
@@ -60,15 +64,40 @@ public class WriteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
+        //insert
+        mEditTitle = findViewById(R.id.editTitle);
+        mEditContent = findViewById(R.id.editContent);
+        mTextViewResult = findViewById(R.id.resultText);
 
-        mTitleText=findViewById(R.id.editTextTextPersonName); //제목
-        mContentText=findViewById(R.id.editTextTextMultiLine); //내용
+        mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
+
+        Button buttonInsert = findViewById(R.id.submitBtn);
+        buttonInsert.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                String title=mEditTitle.getText().toString();
+                String contents = mEditContent.getText().toString();
+                
+                //후에 InsertData 넣어주기
+                InsertData task = new InsertData();
+                //ubuntu 서버에 php 파일 넣어주기 => 성공
+                task.execute("http://"+IP_ADDRESS+"/insert.php",title,contents);
+
+                mEditTitle.setText("");
+                mEditContent.setText("");
+            }
+        });
+
+
         mAuth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar(); // -> null이 반환된다.
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.menu);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -123,23 +152,6 @@ public class WriteActivity extends AppCompatActivity {
         tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
 
         headerView.findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
-
-        //등록버튼 눌렀을 때 글 DB에 추가되기
-//        Button submitBtn = findViewById(R.id.submitBtn);
-//        submitBtn.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View v) {
-//                String title=mTitleText.getText().toString();
-//                String content=mContentText.getText().toString();
-//
-//                InsertData task=new InsertData();
-//                task.execute("http://"+IP_ADDRESS+"/Allrim_test1/insert.php",title,content);
-//
-//                mTitleText.setText("");
-//                mContentText.setText("");
-//            }
-        //});
     }
 
     // 버튼 클릭 부분
@@ -177,65 +189,77 @@ private void signOut() {
         return super.onOptionsItemSelected(item);
     }
 
-//    //InsertData 클래스 시작
-//    class InsertData extends AsyncTask<String,Void,String>{
-//        ProgressDialog progressDialog = ProgressDialog.show(this,
-//                "Please wait",null,true,true);
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//        }
-//
-//        //데이터삽입역할
-//        @Override
-//        protected String doInBackground(String... params) {
-//            String title=(String)params[1];
-//            String content=(String)params[2];
-//
-//            String serverURL=(String)params[0];
-//            String postParameters="title="+title+"&content="+content;
-//
-//            try{
-//                URL url = new URL(serverURL);
-//                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-//
-//                httpURLConnection.setReadTimeout(5000);
-//                httpURLConnection.setConnectTimeout(5000);
-//                httpURLConnection.setRequestMethod("POST");
-//                httpURLConnection.connect();
-//
-//                OutputStream opstream = httpURLConnection.getOutputStream();
-//                opstream.write(postParameters.getBytes("UTF-8"));
-//                opstream.flush();
-//                opstream.close();
-//
-//                int responseStatusCode =httpURLConnection.getResponseCode();
-//                Log.d("phptest","POST response-code : "+responseStatusCode);
-//
-//                InputStream ipstream;
-//                if(responseStatusCode == HttpURLConnection.HTTP_OK){
-//                    ipstream=httpURLConnection.getInputStream();
-//                }else{
-//                    ipstream=httpURLConnection.getErrorStream();
-//                }
-//
-//                InputStreamReader inputStreamReader = new InputStreamReader(ipstream,"UTF_8");
-//                BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
-//
-//                StringBuilder sb=new StringBuilder();
-//                String line=null;
-//
-//                while((line=bufferedReader.readLine())!= null){
-//                    sb.append(line);
-//                }
-//
-//                bufferedReader.close();
-//                return sb.toString();
-//
-//            }catch(Exception e){
-//                return new String("Error: "+e.getMessage());
-//            }
-//        }
+    //php insert start => InsertData 만들기
+    class InsertData extends AsyncTask<String,Void,String>{
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog=ProgressDialog.show(WriteActivity.this,
+                    "Please wait",null,true,true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+            mTextViewResult.setText(result);
+            Log.d(TAG,"Post response - "+result);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String title = (String)strings[1];
+            String contents=(String)strings[2];
+
+            String serverURL = (String)strings[0];
+            String postParameters = "title="+title+"&contents="+contents;
+
+            try{
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection =
+                        (HttpURLConnection)url.openConnection();
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                OutputStream op = httpURLConnection.getOutputStream();
+                op.write(postParameters.getBytes("UTF-8"));
+                op.flush();
+                op.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG,"Post response code - "+responseStatusCode);
+
+                InputStream is;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK){
+                    is=httpURLConnection.getInputStream();
+                }else{
+                    is=httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(is,"UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line= null;
+
+                while((line = bufferedReader.readLine())!= null){
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+                return sb.toString();
+            }catch(Exception e) {
+                Log.d(TAG, "InsertData: Error ", e);
+                return new String("Error: " + e.getMessage());
+            }
+        }
+    }
 
 }
