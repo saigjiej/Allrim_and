@@ -5,8 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -120,7 +118,7 @@ public class ShowWritingActivity extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.bt_logout:
                 signOut();
-                Intent intent = new Intent(getApplicationContext(), loginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;
