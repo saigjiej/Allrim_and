@@ -30,20 +30,20 @@ public class WriteActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
     private DrawerLayout mDrawerLayout;
 
+    private TextView tv_nickname; // 닉네임 text
+    private ImageView iv_profile; // 이미지 뷰
+
     private static String IP_ADDRESS = "125.141.36.87";
     private static String TAG="phptest";
     private EditText mTitleText;
     private EditText mContentText;
-    private TextView tv_nickname; // 닉네임 text
-    private ImageView iv_profile; // 이미지 뷰
 
+    private String community;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
 
-        mTitleText=findViewById(R.id.editTextTextPersonName); //제목
-        mContentText=findViewById(R.id.editTextTextMultiLine); //내용
         mAuth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -58,36 +58,44 @@ public class WriteActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = navigationView.getHeaderView(0);
 
-        navigationView.getMenu().getItem(3).setChecked(true);
+        navigationView.getMenu().getItem(0).setChecked(true); // 페이지별로 바꾸기
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             mDrawerLayout.closeDrawers();
 
             int id = menuItem.getItemId();
-            if(!menuItem.isChecked()){
+            if (!menuItem.isChecked()) {
                 Intent intent;
                 switch (id) {
                     case R.id.navigation_item_info:
                         intent = new Intent(this, MyPageActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_writing:
-                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, MyWritingActivity.class);
+                        finish();
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_schedule:
-                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, ScheduleActivity.class);
+                        finish();
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_meal:
                         intent = new Intent(this, MealActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        finish();
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_lost:
-                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, LostActivity.class);
+                        finish();
+                        startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
-                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        intent = new Intent(this, SettingActivity.class);
+                        finish();
+                        startActivity(intent);
                         break;
                 }
             }
@@ -105,6 +113,11 @@ public class WriteActivity extends AppCompatActivity {
 
         headerView.findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
 
+        mTitleText=findViewById(R.id.editTextTextPersonName); //제목
+        mContentText=findViewById(R.id.editTextTextMultiLine); //내용
+
+        community = getIntent().getStringExtra("community");
+        mTitleText.setText(community);
         //등록버튼 눌렀을 때 글 DB에 추가되기
 //        Button submitBtn = findViewById(R.id.submitBtn);
 //        submitBtn.setOnClickListener(new View.OnClickListener(){

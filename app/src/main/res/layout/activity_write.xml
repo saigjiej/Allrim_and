@@ -14,8 +14,7 @@
         android:padding="0px">
 
         <androidx.appcompat.widget.Toolbar
-
-
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#11732C"
@@ -97,7 +96,6 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer">
-
     </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

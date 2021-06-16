@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -33,6 +34,8 @@ public class ShowWritingsActivity extends AppCompatActivity {
 
     private ListView listview;
     private ListViewAdapter adapter;
+
+    private String community;
 
 
     @Override
@@ -109,6 +112,8 @@ public class ShowWritingsActivity extends AppCompatActivity {
 
         headerView.findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
 
+        findViewById(R.id.fab_writing).setOnClickListener(onClickListener);
+
         // 리스트뷰 객체 생성 및 Adapter 설정
         listview = (ListView) findViewById(R.id.writing_listview);
 
@@ -158,7 +163,7 @@ public class ShowWritingsActivity extends AppCompatActivity {
 
 
 
-        String community = getIntent().getStringExtra("community");
+        community = getIntent().getStringExtra("community");
 
         TextView commnunity_name = findViewById(R.id.community_name);
         commnunity_name.setText(community);
@@ -166,11 +171,17 @@ public class ShowWritingsActivity extends AppCompatActivity {
 
     // 버튼 클릭 부분
     View.OnClickListener onClickListener = v -> {
+        Intent intent;
         switch (v.getId()) {
             case R.id.bt_logout:
                 signOut();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                intent = new Intent(getApplicationContext(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
+            case R.id.fab_writing:
+                intent = new Intent(getApplicationContext(), WriteActivity.class);
+                intent.putExtra("community", community);
                 startActivity(intent);
                 break;
         }
