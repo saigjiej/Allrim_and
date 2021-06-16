@@ -25,7 +25,7 @@
         android:theme="@style/Theme.Allrim"
         >
 
-        <activity android:name=".WriteActivity">
+        <activity android:name=".WriteExActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

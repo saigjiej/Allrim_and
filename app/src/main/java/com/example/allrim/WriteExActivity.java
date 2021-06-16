@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
 import android.renderscript.ScriptGroup;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -50,12 +51,12 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.Buffer;
 
-public class WriteActivity extends AppCompatActivity {
+public class WriteExActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
     private DrawerLayout mDrawerLayout;
 
-    private static String IP_ADDRESS="localhost";
-    private static String TAG="insert";
+    private static String IP_ADDRESS="34.225.140.23";
+    private static String TAG="phptest";
 
     private EditText mEditTitle; //타이틀
     private EditText mEditContent; //content
@@ -74,15 +75,19 @@ public class WriteActivity extends AppCompatActivity {
         mTextViewResult = findViewById(R.id.resultText);
 
         Button buttonInsert = findViewById(R.id.submitBtn);
-        buttonInsert.setOnClickListener(new View.OnClickListener() {
+        buttonInsert.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 String title = mEditTitle.getText().toString();
-                String contents = mEditContent.getText().toString();
-                insertToDatabase(title,contents);
+                String contents=mEditContent.getText().toString();
+
+                InsertData task = new InsertData();
+                task.execute("http://"+IP_ADDRESS+"/insert.php",title,contents);
+
+                mEditTitle.setText("");
+                mEditContent.setText("");
             }
         });
-
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -115,10 +120,10 @@ public class WriteActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_writing:
-                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(WriteExActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_schedule:
-                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(WriteExActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_meal:
                         intent = new Intent(this, MealActivity.class);
@@ -126,10 +131,10 @@ public class WriteActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_lost:
-                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(WriteExActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.navigation_item_set:
-                        Toast.makeText(WriteActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(WriteExActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         break;
                 }
             }
@@ -160,7 +165,7 @@ public class WriteActivity extends AppCompatActivity {
         }
     };
 
-private void signOut() {
+    private void signOut() {
         FirebaseAuth.getInstance().signOut();
         GoogleSignInClient googleApiClient = GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -170,60 +175,75 @@ private void signOut() {
 
     }
 
+    class InsertData extends AsyncTask<String,Void,String>{
+        ProgressDialog progressDialog;
 
-    private void insertToDatabase(String title, String contents){
-        class InsertData extends AsyncTask<String,Void,String>{
-            ProgressDialog loading;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog=ProgressDialog.show(WriteExActivity.this,"Please wait",null,true,true);
+        }
 
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(WriteActivity.this,"Please wait",null,true,true);
-            }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
 
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
-            }
+            progressDialog.dismiss();
+            mTextViewResult.setText(s);
+            Log.d(TAG,"POST-response- "+s);
+        }
 
-            @Override
-            protected String doInBackground(String... params) {
-                try{
-                    String title = (String)params[0];
-                    String contents = (String)params[1];
+        @Override
+        protected String doInBackground(String... params) {
+            String title = (String)params[1];
+            String contents=(String)params[2];
 
-                    String link = "http://34.225.140.23/insert.php";
-                    String data = URLEncoder.encode("title","UTF-8")+"="+URLEncoder.encode(title,"UTF-8");
-                    data += "&"+URLEncoder.encode("contents","UTF-8")+"="+URLEncoder.encode(contents,"UTF-8");
+            String serverURL = (String)params[0];
+            String postParameters = "title="+title+"&contents="+contents;
 
-                    URL url = new URL(link);
-                    URLConnection conn = url.openConnection();
+            try{
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
 
-                    conn.setDoOutput(true);
-                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-                    wr.write(data);
-                    wr.flush();
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
 
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
 
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG,"POST response code - "+responseStatusCode);
 
-                    while((line=reader.readLine())!=null){
-                        sb.append(line);
-                        break;
-                    }
-                    return sb.toString();
-
-                }catch(Exception e){
-                    return new String("Exception : "+e.getMessage());
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK){
+                    inputStream= httpURLConnection.getInputStream();
+                }else{
+                    inputStream=httpURLConnection.getErrorStream();
                 }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line=null;
+
+                while((line = bufferedReader.readLine())!=null){
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+
+                return sb.toString();
+
+            }catch(Exception e){
+                return new String("Error:"+e.getMessage());
             }
         }
-        InsertData task = new InsertData();
-        task.execute(title,contents);
-    }
 
+
+    }
 }
