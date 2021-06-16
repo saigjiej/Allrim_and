@@ -68,6 +68,7 @@
             android:background="@drawable/square"/>
 
         <Button
+            android:id="@+id/bt_writing_cancel"
             android:layout_width="480px"
             android:layout_height="120px"
             android:layout_marginTop="1700px"
@@ -76,15 +77,13 @@
             android:background="@drawable/square"/>
 
         <Button
-            android:id="@+id/submitBtn"
+            android:id="@+id/bt_writing_submit"
             android:layout_width="480px"
             android:layout_height="120px"
             android:layout_marginTop="1700px"
             android:layout_marginLeft="550px"
             android:text="등록"
             android:background="@drawable/square"/>
-
-
 
 
     </RelativeLayout>

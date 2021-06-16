@@ -116,6 +116,9 @@ public class WriteActivity extends AppCompatActivity {
         mTitleText=findViewById(R.id.editTextTextPersonName); //제목
         mContentText=findViewById(R.id.editTextTextMultiLine); //내용
 
+        findViewById(R.id.bt_writing_cancel).setOnClickListener(onClickListener);
+        findViewById(R.id.bt_writing_submit).setOnClickListener(onClickListener);
+
         community = getIntent().getStringExtra("community");
         mTitleText.setText(community);
         //등록버튼 눌렀을 때 글 DB에 추가되기
@@ -145,10 +148,27 @@ public class WriteActivity extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;
+            case R.id.bt_writing_cancel:
+                Toast.makeText(WriteActivity.this, "글 등록 취소", Toast.LENGTH_SHORT).show();
+                finish();
+                break;
+            case R.id.bt_writing_submit:
+                if(mTitleText.getText().toString().trim().equals("")||mContentText.getText().toString().trim().equals("")){
+                    Toast.makeText(WriteActivity.this, "제목과 내용을 모두 입력해주세요", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(WriteActivity.this, "글 등록 성공", Toast.LENGTH_SHORT).show();
+                    postWriting();
+                    finish();
+                }
+                break;
         }
     };
 
-private void signOut() {
+    private void postWriting() {
+        // 정보 받아서 디비 업뎃하는 알고리즘 작성
+    }
+
+    private void signOut() {
         FirebaseAuth.getInstance().signOut();
         GoogleSignInClient googleApiClient = GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))

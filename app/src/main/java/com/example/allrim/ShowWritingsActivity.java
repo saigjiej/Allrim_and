@@ -161,8 +161,6 @@ public class ShowWritingsActivity extends AppCompatActivity {
         listview.setLayoutParams(params);
         listview.setAdapter(adapter);
 
-
-
         community = getIntent().getStringExtra("community");
 
         TextView commnunity_name = findViewById(R.id.community_name);
