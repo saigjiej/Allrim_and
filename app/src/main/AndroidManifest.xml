@@ -22,22 +22,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Allrim"
         >
-<<<<<<< HEAD
-
-        <activity android:name=".WriteExActivity">
-=======
-        <activity android:name=".MealExActivity">
->>>>>>> 2d96176a78257039064d0a8dd150e005c14c4889
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 2d96176a78257039064d0a8dd150e005c14c4889
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -58,8 +42,8 @@
         </activity>
         <activity android:name=".SettingActivity">
         </activity>
-<!--        <activity android:name=".WriteActivity" >-->
-<!--        </activity>-->
+        <activity android:name=".WriteActivity" >
+        </activity>
         <activity android:name=".ShowWritingsActivity" >
         </activity>
         <activity android:name=".ShowWritingActivity" >
