@@ -7,11 +7,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import android.view.View;
 import android.widget.EditText;
-
 import android.content.Intent;
-
-import android.widget.Toast;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 public class WriteActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
@@ -40,7 +39,7 @@ public class WriteActivity extends AppCompatActivity {
 
         mTitleText = findViewById(R.id.editTitle); //제목
         mContentText = findViewById(R.id.editContent); //내용
-        
+
         // 확인
         Intent intents = getIntent();
         String title = intents.getStringExtra("title");
@@ -52,7 +51,7 @@ public class WriteActivity extends AppCompatActivity {
         findViewById(R.id.bt_writing_cancel).setOnClickListener(onClickListener);
         findViewById(R.id.bt_writing_submit).setOnClickListener(onClickListener);
 
-        community = getIntent().getStringExtra("community")
+        community = getIntent().getStringExtra("community");
     }
 
     // 버튼 클릭 부분
@@ -67,7 +66,6 @@ public class WriteActivity extends AppCompatActivity {
                     Toast.makeText(WriteActivity.this, "제목과 내용을 모두 입력해주세요", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(WriteActivity.this, "글 등록 성공", Toast.LENGTH_SHORT).show();
-                    postWriting();
                     finish();
                 }
                 break;
@@ -78,4 +76,13 @@ public class WriteActivity extends AppCompatActivity {
         // 정보 받아서 디비 업뎃하는 알고리즘 작성
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -31,9 +31,10 @@
 
         <EditText
             android:id="@+id/editTitle"
-            android:layout_width="match_parent"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
             android:paddingTop="30px"
             android:ems="10"
             android:hint="제목"
@@ -42,9 +43,10 @@
 
         <EditText
             android:id="@+id/editContent"
-            android:layout_width="match_parent"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
             android:paddingTop="30px"
             android:ems="10"
             android:gravity="start|top"
@@ -53,35 +55,31 @@
             android:background="@drawable/square"
             android:lines="15"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:id="@+id/resultText"/>
+        <Button
+            android:id="@+id/submit_img_btn"
+            android:layout_width="980px"
+            android:layout_height="120px"
+            android:layout_marginTop="0px"
+            android:layout_marginLeft="50px"
+            android:text="사진 등록"
+            android:background="@drawable/square"/>
+
+        <ImageView
+            android:layout_width="980px"
+            android:layout_height="300px"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="0px"
+            android:background="@drawable/square"/>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <Button
-                android:layout_width="980px"
-                android:layout_height="120px"
-                android:layout_marginTop="1200px"
-                android:layout_marginLeft="50px"
-                android:text="사진 등록"
-                android:background="@drawable/square"/>
-
-            <ImageView
-                android:layout_width="980px"
-                android:layout_height="300px"
-                android:layout_marginLeft="50px"
-                android:layout_marginTop="1350px"
-                android:background="@drawable/square"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/bt_writing_cancel"
                 android:layout_width="480px"
                 android:layout_height="120px"
-                android:layout_marginTop="0px"
-                android:layout_marginLeft="50px"
+                android:layout_marginTop="0dp"
                 android:text="취소"
                 android:background="@drawable/square"/>
 
@@ -89,11 +87,11 @@
                 android:id="@+id/bt_writing_submit"
                 android:layout_width="480px"
                 android:layout_height="120px"
-                android:layout_marginTop="0px"
+                android:layout_marginTop="0dp"
                 android:layout_marginLeft="550px"
                 android:text="등록"
                 android:background="@drawable/square"/>
+
         </RelativeLayout>
     </LinearLayout>
-
 </androidx.drawerlayout.widget.DrawerLayout>
