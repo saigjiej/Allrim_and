@@ -56,12 +56,12 @@
             android:lines="15"/>
 
         <Button
-            android:id="@+id/submit_img_btn"
+            android:id="@+id/submit_file_btn"
             android:layout_width="980px"
             android:layout_height="120px"
             android:layout_marginTop="0px"
             android:layout_marginLeft="50px"
-            android:text="사진 등록"
+            android:text="파일 등록"
             android:background="@drawable/square"/>
 
         <ImageView

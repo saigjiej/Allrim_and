@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.community_software:
-                intent = new Intent(getApplicationContext(), ShowWritingsActivity.class);
+                intent = new Intent(MainActivity.this, ShowWritingsActivity.class);
                 intent.putExtra("community", "뉴미디어소프트웨어과");
                 startActivity(intent);
                 break;

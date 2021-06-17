@@ -23,7 +23,7 @@ public class WriteExActivity extends AppCompatActivity {
     private EditText mEditTitle; //타이틀
     private EditText mEditContent; //content
     private Button btn_insert; //등록 버튼
-
+    private String community;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +37,17 @@ public class WriteExActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //타이틀 (글제목)
-                String title = mEditTitle.getText().toString();
+                String title = mEditTitle.getText().toString().trim();
                 //글 내용
-                String contents = mEditContent.getText().toString();
+                String contents = mEditContent.getText().toString().trim();
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        if(title!=""&&contents!=""){
+
+                        }else{
+
+                        }
                         try{
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
@@ -50,7 +55,7 @@ public class WriteExActivity extends AppCompatActivity {
                             //게시글 등록 성공시
                             if(success){
                                 Toast.makeText(getApplicationContext(),"성공",Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(WriteExActivity.this,MainActivity.class);
+                                Intent intent = new Intent(WriteExActivity.this,ShowWritingsActivity.class);
                                 startActivity(intent);
                             }else{
                                 Toast.makeText(getApplicationContext(),"실패",Toast.LENGTH_SHORT).show();

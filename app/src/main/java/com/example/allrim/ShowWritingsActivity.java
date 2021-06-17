@@ -176,7 +176,7 @@ public class ShowWritingsActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.fab_writing:
-                intent = new Intent(getApplicationContext(), WriteActivity.class);
+                intent = new Intent(ShowWritingsActivity.this, WriteExActivity.class);
                 intent.putExtra("community", community);
                 startActivity(intent);
                 break;

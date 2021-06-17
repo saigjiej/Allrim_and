@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InsertRequest extends StringRequest {
-    private String host = "34.225.140.23";
-    final static private String URL = "http://34.225.140.23/insert.php";
+    static private String host = "34.225.140.23";
+    static private String URL = "http://"+host+"/insert.php";
     private Map<String,String> map;
 
     public InsertRequest(String title, String contents, Response.Listener<String>listener){

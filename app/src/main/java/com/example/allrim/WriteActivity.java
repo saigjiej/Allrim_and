@@ -15,9 +15,6 @@ import android.widget.Toast;
 public class WriteActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
 
-    private static String IP_ADDRESS="localhost";
-    private static String TAG="insert";
-
     private EditText mTitleText; //타이틀
     private EditText mContentText; //content
 
@@ -65,16 +62,11 @@ public class WriteActivity extends AppCompatActivity {
                 if(mTitleText.getText().toString().trim().equals("")||mContentText.getText().toString().trim().equals("")){
                     Toast.makeText(WriteActivity.this, "제목과 내용을 모두 입력해주세요", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(WriteActivity.this, "글 등록 성공", Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 break;
         }
     };
-
-    private void postWriting() {
-        // 정보 받아서 디비 업뎃하는 알고리즘 작성
-    }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
