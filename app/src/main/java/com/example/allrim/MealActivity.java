@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -118,9 +119,7 @@ public class MealActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
-                        intent = new Intent(this, SettingActivity.class);
-                        finish();
-                        startActivity(intent);
+                        Toast.makeText(MealActivity.this, "업데이트 예정", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

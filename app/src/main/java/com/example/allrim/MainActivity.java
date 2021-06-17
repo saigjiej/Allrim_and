@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -86,8 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
-                        intent = new Intent(this, SettingActivity.class);
-                        startActivity(intent);
+                        Toast.makeText(MainActivity.this, "업데이트 예정", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return false;

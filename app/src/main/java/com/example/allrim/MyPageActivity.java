@@ -21,12 +21,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.w3c.dom.Text;
+
 public class MyPageActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
     private DrawerLayout mDrawerLayout;
 
     private TextView tv_nickname; // 닉네임 text
     private ImageView iv_profile; // 이미지 뷰
+    private ImageView iv_profile_2; // 이미지 뷰
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,8 +101,20 @@ public class MyPageActivity extends AppCompatActivity {
         iv_profile = headerView.findViewById(R.id.img_userImage);
         Glide.with(this).load(photoUrl).circleCrop().into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
 
+        iv_profile_2 = findViewById(R.id.img_userImage);
+        Glide.with(this).load(photoUrl).circleCrop().into(iv_profile_2); // 프로필 url을 이미지 뷰에 세팅
+
         tv_nickname = (TextView) headerView.findViewById(R.id.tv_userName);
         tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
+
+        TextView tv_1 = findViewById(R.id.profile_tv_1);
+        tv_1.setText(mAuth.getCurrentUser().getDisplayName().split("_")[1]+"님, 반갑습니다!"); // 닉네임 text를 텍스트 뷰에 세팅
+
+        TextView tv_2 = findViewById(R.id.profile_tv_2);
+        tv_2.setText(mAuth.getCurrentUser().getDisplayName().split("_")[1]+"님이 올리신 커뮤니티"); // 닉네임 text를 텍스트 뷰에 세팅
+
+        TextView tv_3 = findViewById(R.id.profile_tv_3);
+        tv_3.setText(mAuth.getCurrentUser().getDisplayName().split("_")[1]+"님이 올리신 분실물"); // 닉네임 text를 텍스트 뷰에 세팅
 
         headerView.findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
     }

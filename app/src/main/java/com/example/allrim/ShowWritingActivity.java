@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -87,9 +88,7 @@ public class ShowWritingActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
-                        intent = new Intent(this, SettingActivity.class);
-                        finish();
-                        startActivity(intent);
+                        Toast.makeText(ShowWritingActivity.this, "업데이트 예정", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

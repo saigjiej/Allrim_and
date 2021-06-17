@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class LostActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
@@ -83,9 +84,7 @@ public class LostActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
-                        intent = new Intent(this, SettingActivity.class);
-                        finish();
-                        startActivity(intent);
+                        Toast.makeText(LostActivity.this, "업데이트 예정", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
