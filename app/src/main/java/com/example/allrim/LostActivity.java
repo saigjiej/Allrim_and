@@ -1,7 +1,7 @@
 package com.example.allrim;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -18,9 +18,7 @@ import android.net.Uri;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-
 import android.widget.TextView;
-import android.widget.Toast;
 import android.os.Bundle;
 
 public class LostActivity extends AppCompatActivity {
@@ -34,6 +32,7 @@ public class LostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lost);
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -97,7 +96,7 @@ public class LostActivity extends AppCompatActivity {
         Uri photoUrl = mAuth.getCurrentUser().getPhotoUrl(); // MainActivity로 부터 프로필사진 Url 전달받음
 
         iv_profile = headerView.findViewById(R.id.img_userImage);
-        Glide.with(this).load(photoUrl).into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
+        Glide.with(this).load(photoUrl).circleCrop().into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
 
         tv_nickname = (TextView) headerView.findViewById(R.id.tv_userName);
         tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
@@ -110,7 +109,7 @@ public class LostActivity extends AppCompatActivity {
         switch(v.getId()){
             case R.id.bt_logout:
                 signOut();
-                Intent intent = new Intent(getApplicationContext(), loginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;

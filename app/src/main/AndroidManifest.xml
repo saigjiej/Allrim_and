@@ -11,10 +11,8 @@
     <uses-permission
         android:name="android.permission.MANAGE_ACCOUNTS"
         android:maxSdkVersion="22" />
-
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
@@ -24,31 +22,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Allrim"
         >
+<<<<<<< HEAD
 
         <activity android:name=".WriteExActivity">
+=======
+        <activity android:name=".MealExActivity">
+>>>>>>> 2d96176a78257039064d0a8dd150e005c14c4889
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 2d96176a78257039064d0a8dd150e005c14c4889
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name=".TestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".loginActivity" >
+        <activity android:name=".LoginActivity" >
         </activity>
         <activity android:name=".MyPageActivity" >
         </activity>

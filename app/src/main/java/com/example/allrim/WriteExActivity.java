@@ -70,7 +70,7 @@ public class WriteExActivity extends AppCompatActivity {
         mEditTitle = findViewById(R.id.editTitle);
         mEditContent = findViewById(R.id.editContent);
 
-        btn_insert=findViewById(R.id.submitBtn);
+        btn_insert=findViewById(R.id.bt_writing_submit);
         btn_insert.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

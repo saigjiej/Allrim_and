@@ -5,8 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -54,7 +52,7 @@ public class ShowWritingActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = navigationView.getHeaderView(0);
 
-        navigationView.getMenu().getItem(0).setChecked(true); // 페이지별로 바꾸기
+        navigationView.getMenu().getItem(0).setChecked(false);
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             mDrawerLayout.closeDrawers();
@@ -102,7 +100,7 @@ public class ShowWritingActivity extends AppCompatActivity {
         Uri photoUrl = mAuth.getCurrentUser().getPhotoUrl(); // MainActivity로 부터 프로필사진 Url 전달받음
 
         iv_profile = headerView.findViewById(R.id.img_userImage);
-        Glide.with(this).load(photoUrl).into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
+        Glide.with(this).load(photoUrl).circleCrop().into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
 
         tv_nickname = (TextView) headerView.findViewById(R.id.tv_userName);
         tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
@@ -120,7 +118,7 @@ public class ShowWritingActivity extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.bt_logout:
                 signOut();
-                Intent intent = new Intent(getApplicationContext(), loginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;

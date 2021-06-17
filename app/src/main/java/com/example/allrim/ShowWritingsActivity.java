@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -34,6 +34,8 @@ public class ShowWritingsActivity extends AppCompatActivity {
 
     private ListView listview;
     private ListViewAdapter adapter;
+
+    private String community;
 
 
     @Override
@@ -55,7 +57,7 @@ public class ShowWritingsActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = navigationView.getHeaderView(0);
 
-        navigationView.getMenu().getItem(0).setChecked(true); // 페이지별로 바꾸기
+        navigationView.getMenu().getItem(0).setChecked(false);
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             mDrawerLayout.closeDrawers();
@@ -103,12 +105,14 @@ public class ShowWritingsActivity extends AppCompatActivity {
         Uri photoUrl = mAuth.getCurrentUser().getPhotoUrl(); // MainActivity로 부터 프로필사진 Url 전달받음
 
         iv_profile = headerView.findViewById(R.id.img_userImage);
-        Glide.with(this).load(photoUrl).into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
+        Glide.with(this).load(photoUrl).circleCrop().into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
 
         tv_nickname = (TextView) headerView.findViewById(R.id.tv_userName);
         tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
 
         headerView.findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
+
+        findViewById(R.id.fab_writing).setOnClickListener(onClickListener);
 
         // 리스트뷰 객체 생성 및 Adapter 설정
         listview = (ListView) findViewById(R.id.writing_listview);
@@ -157,9 +161,7 @@ public class ShowWritingsActivity extends AppCompatActivity {
         listview.setLayoutParams(params);
         listview.setAdapter(adapter);
 
-
-
-        String community = getIntent().getStringExtra("community");
+        community = getIntent().getStringExtra("community");
 
         TextView commnunity_name = findViewById(R.id.community_name);
         commnunity_name.setText(community);
@@ -167,11 +169,17 @@ public class ShowWritingsActivity extends AppCompatActivity {
 
     // 버튼 클릭 부분
     View.OnClickListener onClickListener = v -> {
+        Intent intent;
         switch (v.getId()) {
             case R.id.bt_logout:
                 signOut();
-                Intent intent = new Intent(getApplicationContext(), loginActivity.class);
+                intent = new Intent(getApplicationContext(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
+            case R.id.fab_writing:
+                intent = new Intent(getApplicationContext(), WriteActivity.class);
+                intent.putExtra("community", community);
                 startActivity(intent);
                 break;
         }

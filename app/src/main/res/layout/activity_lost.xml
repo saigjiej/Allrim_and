@@ -36,99 +36,10 @@
             android:textStyle="bold"
             android:textSize="25sp"
             android:layout_marginTop="200px"
-            android:layout_marginLeft="50px"/>
+            android:layout_marginLeft="50px"
+            android:layout_marginStart="30dp"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/hairtie"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="70dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </ImageView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="270dp"
-            android:layout_marginLeft="50dp"
-            android:text="검정색 머리끈\n2021.03.22 등록\n학교 2층 복도에서 발견"
-            android:textColor="#000000"
-            android:textSize="14dp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/hairtie"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="250dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </ImageView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="270dp"
-            android:layout_marginLeft="230dp"
-            android:text="검정색 머리끈\n2021.03.22 등록\n학교 2층 복도에서 발견"
-            android:textColor="#000000"
-            android:textSize="14dp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/hairtie"
-            android:layout_marginTop="360dp"
-            android:layout_marginLeft="70dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </ImageView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="470dp"
-            android:layout_marginLeft="50dp"
-            android:text="검정색 머리끈\n2021.03.22 등록\n학교 2층 복도에서 발견"
-            android:textColor="#000000"
-            android:textSize="14dp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/hairtie"
-            android:layout_marginTop="360dp"
-            android:layout_marginLeft="250dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </ImageView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="470dp"
-            android:layout_marginLeft="230dp"
-            android:text="검정색 머리끈\n2021.03.22 등록\n학교 2층 복도에서 발견"
-            android:textColor="#000000"
-            android:textSize="14dp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
 
     </RelativeLayout>
 

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class loginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private FirebaseAuth auth; // 파이어 베이스 인증 객체
     private GoogleSignInClient googleApiClient; // 구글 API 클라이언트 객체
@@ -38,7 +37,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
         auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화
 
         if (auth.getCurrentUser() != null) {
-            Intent intent = new Intent(getApplication(), loginActivity.class);
+            Intent intent = new Intent(getApplication(), LoginActivity.class);
             startActivity(intent);
             finish();
         }
@@ -89,7 +88,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
                 if (account.getEmail().split("@")[1].equals("e-mirim.hs.kr")) {
                     resultLogin(account); // 로그인 결과 값 출력 수행하라는 메소드
                 } else {
-                    Toast.makeText(loginActivity.this, "e-mirim계정만 사용 가능합니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "e-mirim계정만 사용 가능합니다.", Toast.LENGTH_SHORT).show();
                     googleApiClient.signOut();
                 }
             }catch (ApiException e) {
@@ -115,11 +114,11 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){ // 로그인이 성공했으면
-                            Toast.makeText(loginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = auth.getCurrentUser();
                             updateUI(user);
                         }else{ // 로그인이 실패했으면
-                            Toast.makeText(loginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
                     }
@@ -129,7 +128,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
         if (user != null) {
             if(true){
                 String[] info = getInfo(user); // 학년 반 과 담긴 배열 반환
-                Toast.makeText(loginActivity.this, info[0]+ info[1] +  info[2], Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, info[0]+ info[1] +  info[2], Toast.LENGTH_SHORT).show();
                 // 없으면 회원정보 db에 인서트
             }
             //user.getEmail()이 디비에 있으면 걍 로그인
@@ -153,7 +152,7 @@ public class loginActivity extends AppCompatActivity implements GoogleApiClient.
         }else if(user.getEmail().substring(0,user.getEmail().lastIndexOf("@")).length()==8){
             info[2] = user.getEmail().substring(5,6);
         }else{
-            Toast.makeText(loginActivity.this, "지원하지 않는 이메일 양식입니다, 문의바람", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "지원하지 않는 이메일 양식입니다, 문의바람", Toast.LENGTH_SHORT).show();
         }
         switch (info[2]){
             case "s":
