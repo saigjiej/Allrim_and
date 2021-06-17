@@ -59,8 +59,6 @@ public class WriteActivity extends AppCompatActivity {
 
     private EditText mEditTitle; //타이틀
     private EditText mEditContent; //content
-    private TextView mTextViewResult; //결과 나오는 부분
-
     private TextView tv_nickname; // 닉네임 text
     private ImageView iv_profile; // 이미지 뷰
 
@@ -71,18 +69,14 @@ public class WriteActivity extends AppCompatActivity {
         //insert
         mEditTitle = findViewById(R.id.editTitle);
         mEditContent = findViewById(R.id.editContent);
-        mTextViewResult = findViewById(R.id.resultText);
 
-        Button buttonInsert = findViewById(R.id.submitBtn);
-        buttonInsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String title = mEditTitle.getText().toString();
-                String contents = mEditContent.getText().toString();
-                insertToDatabase(title,contents);
-            }
-        });
+        Intent intents = getIntent();
+        String title = intents.getStringExtra("title");
+        String contents = intents.getStringExtra("contents");
 
+
+        mEditTitle.setText(title);
+        mEditContent.setText(contents);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -169,61 +163,4 @@ private void signOut() {
         googleApiClient.signOut();
 
     }
-
-
-    private void insertToDatabase(String title, String contents){
-        class InsertData extends AsyncTask<String,Void,String>{
-            ProgressDialog loading;
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(WriteActivity.this,"Please wait",null,true,true);
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            protected String doInBackground(String... params) {
-                try{
-                    String title = (String)params[0];
-                    String contents = (String)params[1];
-
-                    String link = "http://34.225.140.23/insert.php";
-                    String data = URLEncoder.encode("title","UTF-8")+"="+URLEncoder.encode(title,"UTF-8");
-                    data += "&"+URLEncoder.encode("contents","UTF-8")+"="+URLEncoder.encode(contents,"UTF-8");
-
-                    URL url = new URL(link);
-                    URLConnection conn = url.openConnection();
-
-                    conn.setDoOutput(true);
-                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-                    wr.write(data);
-                    wr.flush();
-
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
-
-                    while((line=reader.readLine())!=null){
-                        sb.append(line);
-                        break;
-                    }
-                    return sb.toString();
-
-                }catch(Exception e){
-                    return new String("Exception : "+e.getMessage());
-                }
-            }
-        }
-        InsertData task = new InsertData();
-        task.execute(title,contents);
-    }
-
 }

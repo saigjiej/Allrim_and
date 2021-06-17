@@ -9,6 +9,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -40,6 +43,9 @@ import android.os.Bundle;
 
 import android.os.Bundle;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -52,18 +58,9 @@ import java.net.URLEncoder;
 import java.nio.Buffer;
 
 public class WriteExActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth ;
-    private DrawerLayout mDrawerLayout;
-
-    private static String IP_ADDRESS="34.225.140.23";
-    private static String TAG="phptest";
-
     private EditText mEditTitle; //타이틀
     private EditText mEditContent; //content
-    private TextView mTextViewResult; //결과 나오는 부분
-
-    private TextView tv_nickname; // 닉네임 text
-    private ImageView iv_profile; // 이미지 뷰
+    private Button btn_insert; //등록 버튼
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,178 +69,41 @@ public class WriteExActivity extends AppCompatActivity {
         //insert
         mEditTitle = findViewById(R.id.editTitle);
         mEditContent = findViewById(R.id.editContent);
-        mTextViewResult = findViewById(R.id.resultText);
 
-        Button buttonInsert = findViewById(R.id.submitBtn);
-        buttonInsert.setOnClickListener(new View.OnClickListener(){
+        btn_insert=findViewById(R.id.submitBtn);
+        btn_insert.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                //타이틀 (글제목)
                 String title = mEditTitle.getText().toString();
-                String contents=mEditContent.getText().toString();
+                //글 내용
+                String contents = mEditContent.getText().toString();
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
 
-                InsertData task = new InsertData();
-                task.execute("http://"+IP_ADDRESS+"/insert.php",title,contents);
-
-                mEditTitle.setText("");
-                mEditContent.setText("");
+                            //게시글 등록 성공시
+                            if(success){
+                                Toast.makeText(getApplicationContext(),"성공",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(WriteExActivity.this,MainActivity.class);
+                                startActivity(intent);
+                            }else{
+                                Toast.makeText(getApplicationContext(),"실패",Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }catch(JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                //서버로 Volley를 이용해서 요청
+                InsertRequest registerRequest = new InsertRequest(title,contents, responseListener);
+                RequestQueue queue = Volley.newRequestQueue( WriteExActivity.this );
+                queue.add( registerRequest );
             }
         });
-
-        mAuth = FirebaseAuth.getInstance();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.menu);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.menu);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        View headerView = navigationView.getHeaderView(0);
-
-        navigationView.getMenu().getItem(3).setChecked(true);
-
-        navigationView.setNavigationItemSelectedListener(menuItem -> {
-            mDrawerLayout.closeDrawers();
-
-            int id = menuItem.getItemId();
-            if(!menuItem.isChecked()){
-                Intent intent;
-                switch (id) {
-                    case R.id.navigation_item_info:
-                        intent = new Intent(this, MyPageActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                        startActivity(intent);
-                        break;
-                    case R.id.navigation_item_writing:
-                        Toast.makeText(WriteExActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.navigation_item_schedule:
-                        Toast.makeText(WriteExActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.navigation_item_meal:
-                        intent = new Intent(this, MealActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                        startActivity(intent);
-                        break;
-                    case R.id.navigation_item_lost:
-                        Toast.makeText(WriteExActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.navigation_item_set:
-                        Toast.makeText(WriteExActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        break;
-                }
-            }
-            return false;
-        });
-
-        String nickName = mAuth.getCurrentUser().getDisplayName(); // MainActivity로 부터 닉네임 전달받음
-        Uri photoUrl = mAuth.getCurrentUser().getPhotoUrl(); // MainActivity로 부터 프로필사진 Url 전달받음
-
-        iv_profile = headerView.findViewById(R.id.img_userImage);
-        Glide.with(this).load(photoUrl).into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
-
-        tv_nickname = (TextView) headerView.findViewById(R.id.tv_userName);
-        tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
-
-        headerView.findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
-    }
-
-    // 버튼 클릭 부분
-    View.OnClickListener onClickListener = v -> {
-        switch(v.getId()){
-            case R.id.bt_logout:
-                signOut();
-                Intent intent = new Intent(getApplicationContext(), loginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                break;
-        }
-    };
-
-    private void signOut() {
-        FirebaseAuth.getInstance().signOut();
-        GoogleSignInClient googleApiClient = GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build());
-        googleApiClient.signOut();
-
-    }
-
-    class InsertData extends AsyncTask<String,Void,String>{
-        ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog=ProgressDialog.show(WriteExActivity.this,"Please wait",null,true,true);
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-            progressDialog.dismiss();
-            mTextViewResult.setText(s);
-            Log.d(TAG,"POST-response- "+s);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            String title = (String)params[1];
-            String contents=(String)params[2];
-
-            String serverURL = (String)params[0];
-            String postParameters = "title="+title+"&contents="+contents;
-
-            try{
-                URL url = new URL(serverURL);
-                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
-
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.connect();
-
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                outputStream.write(postParameters.getBytes("UTF-8"));
-                outputStream.flush();
-                outputStream.close();
-
-                int responseStatusCode = httpURLConnection.getResponseCode();
-                Log.d(TAG,"POST response code - "+responseStatusCode);
-
-                InputStream inputStream;
-                if(responseStatusCode == HttpURLConnection.HTTP_OK){
-                    inputStream= httpURLConnection.getInputStream();
-                }else{
-                    inputStream=httpURLConnection.getErrorStream();
-                }
-
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                StringBuilder sb = new StringBuilder();
-                String line=null;
-
-                while((line = bufferedReader.readLine())!=null){
-                    sb.append(line);
-                }
-
-                bufferedReader.close();
-
-                return sb.toString();
-
-            }catch(Exception e){
-                return new String("Error:"+e.getMessage());
-            }
-        }
-
-
     }
 }
