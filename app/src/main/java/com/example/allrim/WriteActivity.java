@@ -50,68 +50,10 @@ public class WriteActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.menu);
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        View headerView = navigationView.getHeaderView(0);
-
-        navigationView.getMenu().getItem(0).setChecked(true); // 페이지별로 바꾸기
-
-        navigationView.setNavigationItemSelectedListener(menuItem -> {
-            mDrawerLayout.closeDrawers();
-
-            int id = menuItem.getItemId();
-            if (!menuItem.isChecked()) {
-                Intent intent;
-                switch (id) {
-                    case R.id.navigation_item_info:
-                        intent = new Intent(this, MyPageActivity.class);
-                        finish();
-                        startActivity(intent);
-                        break;
-                    case R.id.navigation_item_writing:
-                        intent = new Intent(this, MyWritingActivity.class);
-                        finish();
-                        startActivity(intent);
-                        break;
-                    case R.id.navigation_item_schedule:
-                        intent = new Intent(this, ScheduleActivity.class);
-                        finish();
-                        startActivity(intent);
-                        break;
-                    case R.id.navigation_item_meal:
-                        intent = new Intent(this, MealActivity.class);
-                        finish();
-                        startActivity(intent);
-                        break;
-                    case R.id.navigation_item_lost:
-                        intent = new Intent(this, LostActivity.class);
-                        finish();
-                        startActivity(intent);
-                        break;
-                    case R.id.navigation_item_set:
-                        intent = new Intent(this, SettingActivity.class);
-                        finish();
-                        startActivity(intent);
-                        break;
-                }
-            }
-            return false;
-        });
 
         String nickName = mAuth.getCurrentUser().getDisplayName(); // MainActivity로 부터 닉네임 전달받음
         Uri photoUrl = mAuth.getCurrentUser().getPhotoUrl(); // MainActivity로 부터 프로필사진 Url 전달받음
-
-        iv_profile = headerView.findViewById(R.id.img_userImage);
-        Glide.with(this).load(photoUrl).into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
-
-        tv_nickname = (TextView) headerView.findViewById(R.id.tv_userName);
-        tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
-
-        headerView.findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
 
         mTitleText=findViewById(R.id.editTextTextPersonName); //제목
         mContentText=findViewById(R.id.editTextTextMultiLine); //내용
@@ -142,12 +84,6 @@ public class WriteActivity extends AppCompatActivity {
     // 버튼 클릭 부분
     View.OnClickListener onClickListener = v -> {
         switch(v.getId()){
-            case R.id.bt_logout:
-                signOut();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                break;
             case R.id.bt_writing_cancel:
                 Toast.makeText(WriteActivity.this, "글 등록 취소", Toast.LENGTH_SHORT).show();
                 finish();
@@ -168,29 +104,15 @@ public class WriteActivity extends AppCompatActivity {
         // 정보 받아서 디비 업뎃하는 알고리즘 작성
     }
 
-    private void signOut() {
-        FirebaseAuth.getInstance().signOut();
-        GoogleSignInClient googleApiClient = GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build());
-        googleApiClient.signOut();
-
-    }
-
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
+        switch (item.getItemId()){
+            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+                finish();
                 return true;
-            case R.id.action_settings:
-                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
-
 //    //InsertData 클래스 시작
 //    class InsertData extends AsyncTask<String,Void,String>{
 //        ProgressDialog progressDialog = ProgressDialog.show(this,

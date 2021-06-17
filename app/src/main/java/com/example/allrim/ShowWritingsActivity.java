@@ -57,7 +57,7 @@ public class ShowWritingsActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerView = navigationView.getHeaderView(0);
 
-        navigationView.getMenu().getItem(0).setChecked(true); // 페이지별로 바꾸기
+        navigationView.getMenu().getItem(0).setChecked(false);
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             mDrawerLayout.closeDrawers();
