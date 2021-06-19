@@ -25,6 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+//글 목록 보여주기
 public class ShowWritingsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DrawerLayout mDrawerLayout;
@@ -36,7 +37,6 @@ public class ShowWritingsActivity extends AppCompatActivity {
     private ListViewAdapter adapter;
 
     private String community;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -22,10 +22,11 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:baselineAlignBottom="false"
-                android:src="@drawable/logo" />
+                android:src="@drawable/logo"
+                android:paddingRight="180px"/>
 
         </androidx.appcompat.widget.Toolbar>
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ShowWritingActivity">
+    tools:context=".Test">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,19 +21,44 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/logo"
-                android:baselineAlignBottom="false"
-                android:paddingRight="180px"/>
+                android:baselineAlignBottom="false"/>
 
         </androidx.appcompat.widget.Toolbar>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            android:id="@+id/fab_writing"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+
+            android:layout_alignParentRight="true"
+
+            android:layout_marginBottom="20dp"
+
+            android:layout_marginRight="20dp"
+
+            android:backgroundTint="#009688"
+
+            android:src="@drawable/write"
+
+            app:borderWidth="0dp"
+
+            app:fabSize="normal" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="55dp"
             android:fillViewport="true">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,26 +69,31 @@
                 android:descendantFocusability="blocksDescendants">
 
 
-
                 <TextView
-                    android:id="@+id/writing_title"
+                    android:id="@+id/community_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:text="title"
+                    android:text="major"
                     android:textColor="#000000"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textview111"
+
+
+                <ListView
+                    android:id="@+id/writing_listview"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:text="대충 글 내용"
-                    android:textColor="#000000"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent"
+                    android:dividerHeight="10dp"
+                    android:divider="#00000000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:scrollbars="none"
+                    />
 
             </LinearLayout>
 
