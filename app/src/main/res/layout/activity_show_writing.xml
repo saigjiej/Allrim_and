@@ -42,6 +42,8 @@
                 android:orientation="vertical"
                 android:descendantFocusability="blocksDescendants">
 
+
+
                 <TextView
                     android:id="@+id/writing_title"
                     android:layout_width="match_parent"

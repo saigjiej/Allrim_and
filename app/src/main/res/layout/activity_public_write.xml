@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".WriteActivity">
+    tools:context=".PublicWriteActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -41,11 +41,17 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp">
 
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:entries="@array/test"/>
+
                 <EditText
                     android:id="@+id/editTextTextPersonName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50px"
+                    android:layout_marginTop="130px"
                     android:padding="35px"
                     android:ems="10"
                     android:width="740px"
@@ -56,14 +62,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="770px"
-                    android:layout_marginTop="50px"
+                    android:layout_marginTop="130px"
                     android:background="@drawable/ic_baseline_image_24"/>
 
                 <EditText
                     android:id="@+id/editTextTextMultiLine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="230px"
+                    android:layout_marginTop="310px"
                     android:paddingTop="30px"
                     android:ems="10"
                     android:gravity="start|top"
@@ -74,7 +80,7 @@
                 <Button
                     android:layout_width="420px"
                     android:layout_height="120px"
-                    android:layout_marginTop="1700px"
+                    android:layout_marginTop="1730px"
                     android:text="취소"
                     android:background="@drawable/square"/>
 
@@ -82,7 +88,7 @@
                     android:id="@+id/submitBtn"
                     android:layout_width="420px"
                     android:layout_height="120px"
-                    android:layout_marginTop="1700px"
+                    android:layout_marginTop="1730px"
                     android:layout_marginLeft="500px"
                     android:text="등록"
                     android:background="@drawable/square"/>
