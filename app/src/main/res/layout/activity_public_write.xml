@@ -6,12 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".PublicWriteActivity">
+    tools:context=".WriteActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="0px">
+        android:padding="0px"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -29,75 +30,71 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <ScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="55dp"
-            android:fillViewport="true">
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
 
-            <RelativeLayout
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:entries="@array/test"/>
+
+
+            <EditText
+                android:id="@+id/editTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="130px"
+                android:padding="35px"
+                android:ems="10"
+                android:width="740px"
+                android:background="@drawable/square"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/submit_img_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="130px"
+                android:layout_marginLeft="770px"
+                android:layout_marginTop="130px"
+                android:background="@drawable/icon_download"/>
+
+            <EditText
+                android:id="@+id/editContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp">
+                android:layout_marginTop="310px"
+                android:paddingTop="30px"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:background="@drawable/square"
+                android:lines="21"/>
 
-                <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40px"
-                    android:entries="@array/test"/>
+            <Button
+                android:id="@+id/bt_writing_cancel"
+                android:layout_width="420px"
+                android:layout_height="120px"
+                android:layout_marginTop="1780px"
+                android:text="취소"
+                android:background="@drawable/square"/>
 
-                <EditText
-                    android:id="@+id/editTextTextPersonName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="130px"
-                    android:padding="35px"
-                    android:ems="10"
-                    android:width="740px"
-                    android:background="@drawable/square"
-                    android:inputType="textPersonName" />
+            <Button
+                android:id="@+id/bt_writing_submit"
+                android:layout_width="420px"
+                android:layout_height="120px"
+                android:layout_marginTop="1780px"
+                android:layout_marginLeft="500px"
+                android:text="등록"
+                android:background="@drawable/square"/>
+        </RelativeLayout>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="770px"
-                    android:layout_marginTop="130px"
-                    android:background="@drawable/ic_baseline_image_24"/>
-
-                <EditText
-                    android:id="@+id/editTextTextMultiLine"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="310px"
-                    android:paddingTop="30px"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine"
-                    android:background="@drawable/square"
-                    android:lines="21"/>
-
-                <Button
-                    android:layout_width="420px"
-                    android:layout_height="120px"
-                    android:layout_marginTop="1730px"
-                    android:text="취소"
-                    android:background="@drawable/square"/>
-
-                <Button
-                    android:id="@+id/submitBtn"
-                    android:layout_width="420px"
-                    android:layout_height="120px"
-                    android:layout_marginTop="1730px"
-                    android:layout_marginLeft="500px"
-                    android:text="등록"
-                    android:background="@drawable/square"/>
-
-            </RelativeLayout>
-        </ScrollView>
+    </LinearLayout>
 
 
-    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -107,6 +104,5 @@
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer">
     </com.google.android.material.navigation.NavigationView>
-
 
 </androidx.drawerlayout.widget.DrawerLayout>
