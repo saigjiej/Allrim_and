@@ -1,6 +1,5 @@
 package com.example.allrim;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.xmlpull.v1.XmlPullParser;

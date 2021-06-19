@@ -28,98 +28,107 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/face"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="80dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </ImageView>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="55dp"
+            android:fillViewport="true">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
-            android:layout_marginLeft="30dp"
-            android:text="익명님, 반갑습니다!"
-            android:textColor="#000000"
-            android:textSize="24dp"
-            android:textStyle="bold"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp">
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
+                <ImageView
+                    android:id="@+id/img_userImage"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="15dp"
+                    android:contentDescription="@string/nav_header_desc"
+                    android:paddingTop="@dimen/nav_header_vertical_spacing"
+                    app:srcCompat="@mipmap/ic_launcher_round" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            android:layout_marginLeft="30dp"
-            android:text="익명님이 올리신 커뮤니티"
-            android:textColor="#000000"
-            android:textSize="16dp"
-            android:textStyle="bold"
+                <TextView
+                    android:id="@+id/profile_tv_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="85dp"
+                    android:text="익명님, 반갑습니다!"
+                    android:textColor="#000000"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                </TextView>
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="235dp"
-            android:width="350dp"
-            android:height="120dp"
-            android:background="@drawable/square"
+                <TextView
+                    android:id="@+id/profile_tv_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="145dp"
+                    android:text="익명님이 올리신 커뮤니티"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                </TextView>
 
-            android:drawableLeft="@drawable/person"
-            android:paddingLeft="10dp"
-            android:paddingBottom="55dp"
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="180dp"
+                    android:width="350dp"
+                    android:height="120dp"
+                    android:background="@drawable/square"
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </Button>
+                    android:drawableLeft="@drawable/person"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="55dp"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="390dp"
-            android:layout_marginLeft="30dp"
-            android:text="익명님이 올리신 분신물"
-            android:textColor="#000000"
-            android:textSize="16dp"
-            android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                </Button>
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
+                <TextView
+                    android:id="@+id/profile_tv_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="335dp"
+                    android:text="익명님이 올리신 분실물"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/hairtie"
-            android:layout_marginTop="430dp"
-            android:layout_marginLeft="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </ImageView>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                </TextView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="530dp"
-            android:layout_marginLeft="30dp"
-            android:text="검정색 머리끈\n2021.03.22 등록\n학교 2층 복도에서 발견"
-            android:textColor="#000000"
-            android:textSize="14dp"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/hairtie"
+                    android:layout_marginTop="375dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                </ImageView>
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="475dp"
+                    android:text="검정색 머리끈\n2021.03.22 등록\n학교 2층 복도에서 발견"
+                    android:textColor="#000000"
+                    android:textSize="14dp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                </TextView>
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -118,9 +119,7 @@ public class MealActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
-                        intent = new Intent(this, SettingActivity.class);
-                        finish();
-                        startActivity(intent);
+                        Toast.makeText(MealActivity.this, "업데이트 예정", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -131,7 +130,7 @@ public class MealActivity extends AppCompatActivity {
         Uri photoUrl = mAuth.getCurrentUser().getPhotoUrl(); // MainActivity로 부터 프로필사진 Url 전달받음
 
         iv_profile = headerView.findViewById(R.id.img_userImage);
-        Glide.with(this).load(photoUrl).into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
+        Glide.with(this).load(photoUrl).circleCrop().into(iv_profile); // 프로필 url을 이미지 뷰에 세팅
 
         tv_nickname = (TextView) headerView.findViewById(R.id.tv_userName);
         tv_nickname.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅

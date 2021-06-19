@@ -6,8 +6,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -28,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tv_nickname; // 닉네임 text
     private ImageView iv_profile; // 이미지 뷰
+
+    private ListView listview;
+    private ListViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.navigation_item_set:
-                        intent = new Intent(this, SettingActivity.class);
-                        startActivity(intent);
+                        Toast.makeText(MainActivity.this, "업데이트 예정", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return false;
@@ -101,6 +107,54 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.community_solution).setOnClickListener(onClickListener);
             findViewById(R.id.community_design).setOnClickListener(onClickListener);
             findViewById(R.id.community_dormitory).setOnClickListener(onClickListener);
+            findViewById(R.id.bt_write).setOnClickListener(onClickListener);
+
+            // 리스트뷰 객체 생성 및 Adapter 설정
+            listview = (ListView) findViewById(R.id.writing_listview_main);
+
+            // Adapter 생성
+            adapter = new ListViewAdapter();
+
+            // 리스트 뷰 아이템 추가.
+            adapter.addItem("익깅", "메인임이거", "진짜배고픔");
+            adapter.addItem("익깅2", "정처기어카지", "개망한듯");
+            adapter.addItem("익깅3", "집가고싶다", "오늘집감");
+            // 리스트 뷰 아이템 추가.
+            adapter.addItem("익깅", "배고프다", "진짜배고픔");
+            adapter.addItem("익깅2", "정처기어카지", "개망한듯");
+            adapter.addItem("익깅3", "집가고싶다", "오늘집감");
+            // 리스트 뷰 아이템 추가.
+            adapter.addItem("익깅", "배고프다", "진짜배고픔");
+            adapter.addItem("익깅2", "정처기어카지", "개망한듯");
+            adapter.addItem("익깅3", "집가고싶다", "오늘집감");
+            // 리스트 뷰 아이템 추가.
+            adapter.addItem("익깅", "배고프다", "진짜배고픔");
+            adapter.addItem("익깅2", "정처기어카지", "개망한듯");
+            adapter.addItem("익깅3", "집가고싶다", "오늘집감");
+
+            // 리스트뷰의 높이를 계산에서 layout 크기를 설정
+            int totalHeight = 0;
+            for (int i = 0; i < 2; i++){
+                View listItem = adapter.getView(i, null, listview);
+                listItem.measure(0, 0);
+                totalHeight += listItem.getMeasuredHeight();
+            }
+
+            ViewGroup.LayoutParams params = listview.getLayoutParams();
+            params.height = totalHeight + listview.getDividerHeight();
+
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
+                    final ListViewItem item = (ListViewItem) adapter.getItem(a_position);
+                    Intent intent = new Intent(getApplicationContext(), ShowWritingActivity.class);
+                    intent.putExtra("title", item.getTitle());
+                    startActivity(intent);
+                }
+            });
+
+            listview.setLayoutParams(params);
+            listview.setAdapter(adapter);
             
         }
 
@@ -136,6 +190,12 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("community", "기숙사 커뮤니티");
                 startActivity(intent);
                 break;
+            case R.id.bt_write:
+                intent = new Intent(getApplicationContext(), WriteActivity.class);
+                intent.putExtra("community", "메인커뮤니티");
+                startActivity(intent);
+                break;
+
         }
     };
 
