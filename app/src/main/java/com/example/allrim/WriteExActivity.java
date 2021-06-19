@@ -23,6 +23,7 @@ public class WriteExActivity extends AppCompatActivity {
     private EditText mEditTitle; //타이틀
     private EditText mEditContent; //content
     private Button btn_insert; //등록 버튼
+    private Button btn_cancel; //취소 버튼
     private String community;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,8 @@ public class WriteExActivity extends AppCompatActivity {
         mEditContent = findViewById(R.id.editContent);
 
         btn_insert=findViewById(R.id.bt_writing_submit);
+        btn_cancel = findViewById(R.id.bt_writing_cancel);
+
         btn_insert.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -43,11 +46,6 @@ public class WriteExActivity extends AppCompatActivity {
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if(title!=""&&contents!=""){
-
-                        }else{
-
-                        }
                         try{
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
@@ -65,12 +63,26 @@ public class WriteExActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                };
-                //서버로 Volley를 이용해서 요청
-                InsertRequest registerRequest = new InsertRequest(title,contents, responseListener);
-                RequestQueue queue = Volley.newRequestQueue( WriteExActivity.this );
-                queue.add( registerRequest );
+                }; //end of responseListener
+
+                //서버로 Volley를 이용해서 요청 -> 여기에서 add되는 거 같음
+                if(title.equals("") || contents.equals("")){
+                    Toast.makeText(WriteExActivity.this, "제목과 내용을 모두 입력해주세요", Toast.LENGTH_SHORT).show();
+                }else{
+                    InsertRequest registerRequest = new InsertRequest(title,contents, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue( WriteExActivity.this );
+                    queue.add( registerRequest );
+                }
             }
-        });
-    }
+        }); //end of btn_insert setOnclick
+
+        //start button_cancel
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(WriteExActivity.this, "글 등록 취소", Toast.LENGTH_SHORT).show();
+                finish(); //이번 액티비티 종류
+            }
+        });//end of button_cancel
+    } //end of onCreate
 }
