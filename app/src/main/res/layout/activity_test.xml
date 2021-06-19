@@ -8,11 +8,10 @@
     android:fitsSystemWindows="true"
     tools:context=".Test">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="0px"
-        android:orientation="vertical">
+        android:padding="0px">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -22,71 +21,85 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/logo"
-                android:baselineAlignBottom="false"
-                android:paddingRight="180px"/>
+                android:baselineAlignBottom="false"/>
 
         </androidx.appcompat.widget.Toolbar>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            android:id="@+id/fab_writing"
+
+            android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp">
 
-            <EditText
-                android:id="@+id/editTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50px"
-                android:padding="35px"
-                android:ems="10"
-                android:width="740px"
-                android:background="@drawable/square"
-                android:inputType="textPersonName" />
+            android:layout_alignParentBottom="true"
 
-            <Button
-                android:id="@+id/submit_img_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="130px"
-                android:layout_marginLeft="770px"
-                android:layout_marginTop="50px"
-                android:background="@drawable/icon_download"/>
+            android:layout_alignParentRight="true"
 
-            <EditText
-                android:id="@+id/editContent"
+            android:layout_marginBottom="20dp"
+
+            android:layout_marginRight="20dp"
+
+            android:backgroundTint="#009688"
+
+            android:src="@drawable/write"
+
+            app:borderWidth="0dp"
+
+            app:fabSize="normal" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="55dp"
+            android:fillViewport="true">
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="230px"
-                android:paddingTop="30px"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:background="@drawable/square"
-                android:lines="21"/>
-            <Button
-                android:id="@+id/bt_writing_cancel"
-                android:layout_width="420px"
-                android:layout_height="120px"
-                android:layout_marginTop="1700px"
-                android:text="취소"
-                android:background="@drawable/square"/>
-
-            <Button
-                android:id="@+id/bt_writing_submit"
-                android:layout_width="420px"
-                android:layout_height="120px"
-                android:layout_marginTop="1700px"
-                android:layout_marginLeft="500px"
-                android:text="등록"
-                android:background="@drawable/square"/>
-        </RelativeLayout>
-
-    </LinearLayout>
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:orientation="vertical"
+                android:descendantFocusability="blocksDescendants">
 
 
+                <TextView
+                    android:id="@+id/community_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="major"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+
+
+                <ListView
+                    android:id="@+id/writing_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:dividerHeight="10dp"
+                    android:divider="#00000000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:scrollbars="none"
+                    />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -96,5 +109,6 @@
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer">
     </com.google.android.material.navigation.NavigationView>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

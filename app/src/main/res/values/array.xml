@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="test">
-        <item>뉴미디어 소프트웨어</item>
-        <item>뉴미디어 웹솔루션</item>
-        <item>뉴미디어 디자인</item>
+        <item>뉴미디어소프트웨어</item>
+        <item>뉴미디어웹솔루션</item>
+        <item>뉴미디어디자인</item>
         <item>기숙사</item>
     </string-array>
 </resources>
