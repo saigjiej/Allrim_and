@@ -21,12 +21,14 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/logo"
-                android:baselineAlignBottom="false"/>
+                android:baselineAlignBottom="false"
+                android:paddingRight="180px"/>
 
         </androidx.appcompat.widget.Toolbar>
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -53,21 +55,21 @@
                 </TextView>
 
 
-                    <ListView
-                        android:id="@+id/writing_listview_main"
-                        android:nestedScrollingEnabled="true"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="55dp"
-                        android:layout_height="match_parent"
-                        android:dividerHeight="10dp"
-                        android:divider="#00000000"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:scrollbars="none"
-                        />
+                <ListView
+                    android:id="@+id/writing_listview_main"
+                    android:nestedScrollingEnabled="true"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="55dp"
+                    android:layout_height="match_parent"
+                    android:dividerHeight="10dp"
+                    android:divider="#00000000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:scrollbars="none"
+                    />
 
                 <Button
                     android:id="@+id/bt_write"
@@ -90,6 +92,7 @@
                     android:layout_marginTop="400dp"
                     android:text="과별 커뮤니티"
                     android:textColor="#000000"
+                    android:textStyle="bold"
                     android:textSize="17dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -162,6 +165,7 @@
                     android:text="기숙사 커뮤니티"
                     android:textColor="#000000"
                     android:textSize="17dp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
                 </TextView>
@@ -176,8 +180,7 @@
                     android:height="50dp"
                     android:background="#FCD3DA"
                     android:text="기숙사 커뮤니티"
-                    android:textStyle="bold"
-                    android:textSize="19dp"
+                    android:textSize="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
                 </Button>
