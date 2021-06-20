@@ -32,56 +32,79 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp">
-
-            <EditText
-                android:id="@+id/editTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50px"
-                android:padding="35px"
-                android:ems="10"
-                android:width="740px"
-                android:background="@drawable/square"
-                android:inputType="textPersonName" />
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/submit_img_btn"
                 android:layout_width="wrap_content"
-                android:layout_height="130px"
-                android:layout_marginLeft="770px"
-                android:layout_marginTop="50px"
-                android:background="@drawable/icon_download"/>
+                android:layout_height="wrap_content"
+                android:width="359px"
+                android:height="170px"
+                android:background="#4CAF50"
+                android:drawableTop="@drawable/icon_img"
+                android:paddingTop="20px"
+                android:text="앨범"
+                android:textColor="#ffffff"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="359px"
+                android:height="170px"
+                android:layout_marginLeft="360px"
+                android:background="#4CAF50"
+                android:drawableTop="@drawable/icon_photo"
+                android:paddingTop="20px"
+                android:text="촬영"
+                android:textColor="#ffffff"/>
+            <Button
+                android:id="@+id/submit_file_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="359px"
+                android:height="170px"
+                android:layout_marginLeft="720px"
+                android:background="#4CAF50"
+                android:drawableTop="@drawable/icon_file"
+                android:paddingTop="20px"
+                android:drawablePadding="0dp"
+                android:text="파일"
+                android:textColor="#ffffff"/>
 
             <EditText
-                android:id="@+id/editContent"
-                android:layout_width="match_parent"
+                android:id="@+id/editTitle"
+                android:layout_width="800px"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="230px"
-                android:paddingTop="30px"
+                android:layout_marginLeft="50px"
+                android:layout_marginTop="200px"
+                android:padding="40px"
                 android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:background="@drawable/square"
-                android:lines="21"/>
-            <Button
-                android:id="@+id/bt_writing_cancel"
-                android:layout_width="420px"
-                android:layout_height="120px"
-                android:layout_marginTop="1700px"
-                android:text="취소"
-                android:background="@drawable/square"/>
+                android:width="740px"
+                android:inputType="textPersonName"
+                android:hint="제목을 입력해주세요"
+                android:textColorHint="#000000"
+                android:background="@null"/>
 
             <Button
                 android:id="@+id/bt_writing_submit"
-                android:layout_width="420px"
-                android:layout_height="120px"
-                android:layout_marginTop="1700px"
-                android:layout_marginLeft="500px"
-                android:text="등록"
-                android:background="@drawable/square"/>
+                android:layout_width="63px"
+                android:layout_height="70px"
+                android:background="@drawable/icon_check"
+                android:layout_marginTop="240px"
+                android:layout_marginLeft="900px"/>
+
+            <EditText
+                android:id="@+id/editContent"
+                android:layout_width="800px"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50px"
+                android:layout_marginTop="370px"
+                android:padding="40px"
+                android:ems="10"
+                android:width="740px"
+                android:inputType="textPersonName"
+                android:hint="내용을 입력해주세요"
+                android:textColorHint="#000000"
+                android:background="@null"/>
         </RelativeLayout>
 
     </LinearLayout>

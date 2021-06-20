@@ -8,114 +8,120 @@
     android:fitsSystemWindows="true"
     tools:context=".Test">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="0px"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#11732C"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/logo"
-                android:baselineAlignBottom="false"
-                android:paddingRight="180px"/>
-
-        </androidx.appcompat.widget.Toolbar>
-
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="55dp"
-            android:fillViewport="true">
+            android:padding="0px"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#11732C"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/logo"
+                    android:baselineAlignBottom="false"
+                    android:paddingRight="180px"/>
+
+            </androidx.appcompat.widget.Toolbar>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/textView1"
+                <Button
+                    android:id="@+id/submit_img_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="기숙사 커뮤니티"
-                    android:textColor="#000000"
-                    android:textSize="23dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                </TextView>
-
-                <ListView
-                    android:id="@+id/writing_listview_main"
-                    android:nestedScrollingEnabled="true"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="55dp"
-                    android:layout_height="match_parent"
-                    android:dividerHeight="10dp"
-                    android:divider="#00000000"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:scrollbars="none"/>
-
-                <TextView
-                    android:id="@+id/textView2"
+                    android:width="359px"
+                    android:height="170px"
+                    android:background="#4CAF50"
+                    android:drawableTop="@drawable/icon_img"
+                    android:paddingTop="20px"
+                    android:text="앨범"
+                    android:textColor="#ffffff"/>
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="320dp"
-                    android:text="댓글"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
-                    android:textSize="17dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:width="359px"
+                    android:height="170px"
+                    android:layout_marginLeft="360px"
+                    android:background="#4CAF50"
+                    android:drawableTop="@drawable/icon_photo"
+                    android:paddingTop="20px"
+                    android:text="촬영"
+                    android:textColor="#ffffff"/>
+                <Button
+                    android:id="@+id/submit_file_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="359px"
+                    android:height="170px"
+                    android:layout_marginLeft="720px"
+                    android:background="#4CAF50"
+                    android:drawableTop="@drawable/icon_file"
+                    android:paddingTop="20px"
+                    android:drawablePadding="0dp"
+                    android:text="파일"
+                    android:textColor="#ffffff"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="240px"
+                    android:layout_marginLeft="70px"
+                    android:entries="@array/test"/>
 
                 <EditText
                     android:id="@+id/editTitle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="800px"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="1070px"
-                    android:padding="21px"
+                    android:layout_marginLeft="50px"
+                    android:layout_marginTop="300px"
+                    android:padding="40px"
                     android:ems="10"
-                    android:width="730px"
-                    android:background="@drawable/square"
+                    android:width="740px"
                     android:inputType="textPersonName"
-                    android:hint="댓글을 입력해주세요"
-                    android:textSize="12sp"/>
+                    android:hint="제목을 입력해주세요"
+                    android:textColorHint="#000000"
+                    android:background="@null"/>
 
                 <Button
-                    android:layout_width="150px"
-                    android:layout_height="95px"
-                    android:layout_marginLeft="750px"
-                    android:layout_marginTop="1065px"
-                    android:text="등록"
-                    android:textSize="10sp"
-                    android:background="#11732C"
-                    android:textColor="#ffffff"/>
+                    android:id="@+id/bt_writing_sub"
+                    android:layout_width="63px"
+                    android:layout_height="70px"
+                    android:background="@drawable/icon_check"
+                    android:layout_marginTop="340px"
+                    android:layout_marginLeft="900px"/>
 
-
-
-
-
-
-
-
+                <EditText
+                    android:id="@+id/editContent"
+                    android:layout_width="800px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50px"
+                    android:layout_marginTop="470px"
+                    android:padding="40px"
+                    android:ems="10"
+                    android:width="740px"
+                    android:inputType="textPersonName"
+                    android:hint="내용을 입력해주세요"
+                    android:textColorHint="#000000"
+                    android:background="@null"/>
             </RelativeLayout>
-        </androidx.core.widget.NestedScrollView>
 
-    </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 
 
@@ -127,5 +133,7 @@
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer">
     </com.google.android.material.navigation.NavigationView>
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
