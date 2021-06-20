@@ -48,7 +48,7 @@
                 android:inputType="textPersonName" />
 
             <Button
-                android:id="@+id/submit_img_btn"
+                android:id="@+id/submit_file_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="130px"
                 android:layout_marginLeft="770px"
@@ -60,12 +60,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="230px"
-                android:paddingTop="30px"
+                android:paddingTop="30dp"
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
                 android:background="@drawable/square"
                 android:lines="21"/>
+
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="match_parent"
+                android:layout_marginTop="1500px"
+                android:layout_height="80dp"
+                />
             <Button
                 android:id="@+id/bt_writing_cancel"
                 android:layout_width="420px"
