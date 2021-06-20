@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Test">
+    tools:context=".CommentActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -105,16 +105,8 @@
                     android:background="#11732C"
                     android:textColor="#ffffff"/>
 
-
-
-
-
-
-
-
             </RelativeLayout>
         </androidx.core.widget.NestedScrollView>
-
     </RelativeLayout>
 
 
