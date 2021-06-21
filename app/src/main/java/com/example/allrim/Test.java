@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.core.view.GravityCompat;
 
@@ -60,6 +64,7 @@ public class Test extends AppCompatActivity {
                return true;
            }
        });
+
     }
 
 

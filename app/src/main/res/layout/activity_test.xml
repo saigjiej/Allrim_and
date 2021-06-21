@@ -8,98 +8,122 @@
     android:fitsSystemWindows="true"
     tools:context=".Test">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="0px">
+        android:padding="0px"
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#11732C"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/logo"
-                android:baselineAlignBottom="false"/>
-
-        </androidx.appcompat.widget.Toolbar>
-
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-
-            android:id="@+id/fab_writing"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-
-            android:layout_alignParentBottom="true"
-
-            android:layout_alignParentRight="true"
-
-            android:layout_marginBottom="20dp"
-
-            android:layout_marginRight="20dp"
-
-            android:backgroundTint="#009688"
-
-            android:src="@drawable/write"
-
-            app:borderWidth="0dp"
-
-            app:fabSize="normal" />
-
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="55dp"
-            android:fillViewport="true">
+            android:padding="0px"
+            android:orientation="vertical">
 
-
-            <LinearLayout
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:orientation="vertical"
-                android:descendantFocusability="blocksDescendants">
+                android:layout_height="?attr/actionBarSize"
+                android:background="#11732C"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-
-                <TextView
-                    android:id="@+id/community_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:text="major"
-                    android:textColor="#000000"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-
-
-                <ListView
-                    android:id="@+id/writing_listview"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:dividerHeight="10dp"
-                    android:divider="#00000000"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:scrollbars="none"
-                    />
+                    android:src="@drawable/logo"
+                    android:baselineAlignBottom="false"
+                    android:paddingRight="180px"/>
 
-            </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
 
-        </ScrollView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </RelativeLayout>
+                <Button
+                    android:id="@+id/submit_img_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="359px"
+                    android:height="170px"
+                    android:background="#4CAF50"
+                    android:drawableTop="@drawable/icon_img"
+                    android:paddingTop="20px"
+                    android:text="앨범"
+                    android:textColor="#ffffff"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="359px"
+                    android:height="170px"
+                    android:layout_marginLeft="360px"
+                    android:background="#4CAF50"
+                    android:drawableTop="@drawable/icon_photo"
+                    android:paddingTop="20px"
+                    android:text="촬영"
+                    android:textColor="#ffffff"/>
+                <Button
+                    android:id="@+id/submit_file_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="359px"
+                    android:height="170px"
+                    android:layout_marginLeft="720px"
+                    android:background="#4CAF50"
+                    android:drawableTop="@drawable/icon_file"
+                    android:paddingTop="20px"
+                    android:drawablePadding="0dp"
+                    android:text="파일"
+                    android:textColor="#ffffff"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="240px"
+                    android:layout_marginLeft="70px"
+                    android:entries="@array/test"/>
+
+                <EditText
+                    android:id="@+id/editTitle"
+                    android:layout_width="800px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50px"
+                    android:layout_marginTop="300px"
+                    android:padding="40px"
+                    android:ems="10"
+                    android:width="740px"
+                    android:inputType="textPersonName"
+                    android:hint="제목을 입력해주세요"
+                    android:textColorHint="#000000"
+                    android:background="@null"/>
+
+                <Button
+                    android:id="@+id/bt_writing_sub"
+                    android:layout_width="63px"
+                    android:layout_height="70px"
+                    android:background="@drawable/icon_check"
+                    android:layout_marginTop="340px"
+                    android:layout_marginLeft="900px"/>
+
+                <EditText
+                    android:id="@+id/editContent"
+                    android:layout_width="800px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50px"
+                    android:layout_marginTop="470px"
+                    android:padding="40px"
+                    android:ems="10"
+                    android:width="740px"
+                    android:inputType="textPersonName"
+                    android:hint="내용을 입력해주세요"
+                    android:textColorHint="#000000"
+                    android:background="@null"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -109,6 +133,7 @@
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer">
     </com.google.android.material.navigation.NavigationView>
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

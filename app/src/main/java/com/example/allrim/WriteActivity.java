@@ -48,7 +48,7 @@ public class WriteActivity extends AppCompatActivity {
         mTitleText.setText(title);
         mContentText.setText(contents);
 
-        findViewById(R.id.bt_writing_cancel).setOnClickListener(onClickListener);
+        //findViewById(R.id.bt_writing_cancel).setOnClickListener(onClickListener);
         findViewById(R.id.bt_writing_submit).setOnClickListener(onClickListener);
 
         community = getIntent().getStringExtra("community");
@@ -57,10 +57,10 @@ public class WriteActivity extends AppCompatActivity {
     // 버튼 클릭 부분
     View.OnClickListener onClickListener = v -> {
         switch(v.getId()){
-            case R.id.bt_writing_cancel:
-                Toast.makeText(WriteActivity.this, "글 등록 취소", Toast.LENGTH_SHORT).show();
-                finish();
-                break;
+//            case R.id.bt_writing_cancel:
+//                Toast.makeText(WriteActivity.this, "글 등록 취소", Toast.LENGTH_SHORT).show();
+//                finish();
+//                break;
             case R.id.bt_writing_submit:
                 if(mTitleText.getText().toString().trim().equals("")||mContentText.getText().toString().trim().equals("")){
                     Toast.makeText(WriteActivity.this, "제목과 내용을 모두 입력해주세요", Toast.LENGTH_SHORT).show();
