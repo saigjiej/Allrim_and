@@ -63,10 +63,10 @@ dependencies {
     //noinspection GradleCompatible
     implementation "com.android.support:support-v4:27.1.1"
     //volley라이브러리 추가
-    //implementation 'com.android.volley:volley:1.1.0'
+    implementation 'com.android.volley:volley:1.1.0'
 
     //volley+ 라이브러리 추가
-    implementation 'dev.dworks.libs:volleyplus:+'
+    //implementation 'dev.dworks.libs:volleyplus:+'
 
     //권한 허용을 위해서 라이브러리 추가
 //    implementation 'gun0912.ted:tedpermission:2.1.0'

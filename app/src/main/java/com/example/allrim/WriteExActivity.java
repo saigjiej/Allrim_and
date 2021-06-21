@@ -17,6 +17,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -51,7 +52,15 @@ public class WriteExActivity extends AppCompatActivity {
     private String community;
     String imageEncoded;
 
+    //서버로 업로드할 파일관련 변수
+    public String uploadFilePath;
+    public String uploadFileName;
     private final int GET_GALLERY_IMAGE = 200;
+
+    //파일을 업로드 하기 위한 변수 선언
+    private int serverResponseCode=0;
+
+    private Bitmap bitmap;
     private ArrayList<String> imagesEncodedList;
 
     @Override
@@ -67,7 +76,7 @@ public class WriteExActivity extends AppCompatActivity {
         btn_upload = (Button)findViewById(R.id.submit_file_btn);
         //이미지 View
         iv=findViewById(R.id.iv);
-
+        checkSelfPermmision();
         btn_insert.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -121,7 +130,6 @@ public class WriteExActivity extends AppCompatActivity {
         btn_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkSelfPermmision();
                 Intent imgIntent = new Intent(Intent.ACTION_PICK);
                 imgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
                 startActivityForResult(imgIntent,GET_GALLERY_IMAGE);
@@ -173,7 +181,28 @@ public class WriteExActivity extends AppCompatActivity {
       if(requestCode==GET_GALLERY_IMAGE && resultCode==RESULT_OK && data !=null
            && data.getData()!=null) {
           Uri uri = data.getData();
-          iv.setImageURI(uri);
+          String path = getPath(uri);
+          //String name=getName(uri);  //각각 메소드가 있음
+          uploadFilePath=path;
+          //uploadFileName=name;
+
+          Bitmap bit= BitmapFactory.decodeFile(path);
+          iv.setImageBitmap(bit);
       }
     } //end of onActivityResult
+
+    //실제 경로 찾기
+    private String getPath(Uri uri){
+        String [] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor=managedQuery(uri,projection,null,null,null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
+
+    //파일명 찾기, 먼저 데이터베이스에 넣고 이미지 있으면 update하기?
+//    private  String getName(Uri uri){
+//        String[]projection = {MediaStore.Images.ImageColumns.DISPLAY_NAME};
+//        Cursor cursor=managedQuery(uri,pr)
+//    }
 }
