@@ -98,12 +98,20 @@
                     android:background="@null"/>
 
                 <Button
-                    android:id="@+id/bt_writing_sub"
+                    android:id="@+id/bt_writing_submit"
                     android:layout_width="63px"
                     android:layout_height="70px"
                     android:background="@drawable/icon_check"
                     android:layout_marginTop="340px"
-                    android:layout_marginLeft="900px"/>
+                    android:layout_marginLeft="830px"/>
+
+                <Button
+                    android:id="@+id/bt_writing_cancel"
+                    android:layout_width="63px"
+                    android:layout_height="70px"
+                    android:background="@drawable/icon_off"
+                    android:layout_marginTop="340px"
+                    android:layout_marginLeft="955px"/>
 
                 <EditText
                     android:id="@+id/editContent"

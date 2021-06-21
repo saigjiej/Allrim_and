@@ -98,7 +98,7 @@
                 android:layout_height="70px"
                 android:background="@drawable/icon_off"
                 android:layout_marginTop="240px"
-                android:layout_marginLeft="960px"/>
+                android:layout_marginLeft="955px"/>
 
             <EditText
                 android:id="@+id/editContent"
